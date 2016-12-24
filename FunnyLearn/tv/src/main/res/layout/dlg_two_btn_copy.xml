@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialoglayout"
+    style="@style/dialoglayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dlg_bg_shape"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/dlg_title_layout"
+        layout="@layout/dlg_title_layout" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/dialogContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="left"
+        android:text="您尚未绑定手机号码，请到账户设置绑定手机号码您尚未绑定手机号码，请到账户设置绑定手机号码"
+        android:textColor="@color/color_303030"
+        android:textSize="@dimen/sp_13" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:minHeight="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/dialogButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_main_title"
+            android:gravity="center"
+            android:text="取消" />
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="2dp"
+            android:background="#E3E3E3" />
+
+        <Button
+            android:id="@+id/btn_ok"
+            style="@style/dialogButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_main_title"
+            android:gravity="center"
+            android:text="确认"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

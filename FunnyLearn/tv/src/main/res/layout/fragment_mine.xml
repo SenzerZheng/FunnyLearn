@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true"
+    android:paddingTop="@dimen/dp_107">
+
+    <RelativeLayout
+        android:id="@+id/rl_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/dp_18"
+        android:layout_marginRight="@dimen/dp_18">
+
+        <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+            android:id="@+id/iv_details"
+            android:layout_width="@dimen/dp_221"
+            android:layout_height="@dimen/dp_128"
+            android:focusable="true"
+            android:src="@mipmap/icon_mine_details" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_details"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="@string/main_mine_details"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_15" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/rl_details">
+
+        <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+            android:id="@+id/iv_fav"
+            android:layout_width="@dimen/dp_221"
+            android:layout_height="@dimen/dp_128"
+            android:focusable="true"
+            android:src="@mipmap/icon_mine_fav" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_fav"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="@string/main_mine_fav"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_15" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/rl_details">
+
+        <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+            android:id="@+id/iv_sys_update"
+            android:layout_width="@dimen/dp_221"
+            android:layout_height="@dimen/dp_128"
+            android:focusable="true"
+            android:src="@mipmap/icon_mine_sys_update" />
+
+        <TextView
+            android:id="@+id/tv_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_sys_update"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="@string/main_mine_update"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_15" />
+
+        <TextView
+            android:id="@+id/tv_curr_ver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_update"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="当前版本：1.0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_10" />
+
+        <TextView
+            android:id="@+id/tv_latest_ver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_curr_ver"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_2"
+            android:text="最新版本：1.0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_10" />
+    </RelativeLayout>
+
+</RelativeLayout>

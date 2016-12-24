@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialoglayout"
+    android:layout_width="@dimen/dp_350"
+    android:layout_height="@dimen/dp_235"
+    android:layout_gravity="center"
+    android:background="@mipmap/bg_dialog"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dp_20">
+
+    <include
+        android:id="@+id/dlg_title_layout"
+        layout="@layout/dlg_title_layout" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_12"
+        android:text="@string/dlg_app_update_tips"
+        android:textColor="@color/color_6B6862"
+        android:textSize="@dimen/sp_17" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_weight="1"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:minHeight="50dp"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_55"
+        android:paddingRight="@dimen/dp_55">
+
+        <net.frontdo.funnylearn.ui.widget.ZoomableButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:background="@mipmap/icon_update_now"
+            android:focusable="true" />
+
+        <net.frontdo.funnylearn.ui.widget.ZoomableButton
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@mipmap/icon_boot_app"
+            android:focusable="true" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">趣味乐园</string>
+
+    <string name="tips_unknow_mistake">服务器开小差了，请稍后再试</string>
+    <string name="loading">加载中&#8230;</string>
+    <string name="load_failed">加载失败</string>
+    <string name="invalid_network">无效的网络</string>
+    <string name="load_no_more">没有更多了</string>
+    <string name="refreshing">刷新中</string>
+
+    <!-- main -->
+    <string name="main_boutique">精品</string>
+    <string name="main_apps">我的应用</string>
+    <string name="main_mine">我的</string>
+    <!-- dialog -->
+    <string name="dlg_app_update_title">宝贝英语说</string>
+    <string name="dlg_app_update_tips">有新版本，是否立即更新？</string>
+    <!-- pop -->
+    <string name="pop_mine_title">请输入宝贝资料</string>
+    <string name="pop_mine_tips">我们将为您推荐最合适的内容</string>
+    <string name="pop_mine_birth_date">出生日期</string>
+    <string name="pop_mine_birth_date_hint">宝宝出生日期</string>
+    <string name="pop_mine_baby_sex">宝贝性别</string>
+    <string name="pop_age_title">选择您要查看的年龄段</string>
+
+    <string name="main_mine_fav">我的收藏</string>
+    <string name="main_mine_details">帐号信息</string>
+    <string name="main_mine_update">更新</string>
+    <string name="main_mine_curr_ver">当前版本：%1$s</string>
+    <string name="main_mine_latest_ver">最新版本：%1$s</string>
+
+    <!-- account info -->
+    <string name="mine_login_amount">当前登录的用户</string>
+    <string name="mine_baby_sex">宝 宝 性 别</string>
+    <string name="mine_sex_boy">小王子</string>
+    <string name="mine_sex_girl">小公主</string>
+
+    <!-- login -->
+    <string name="login_mobile_hint">手机号码</string>
+    <string name="login_pwd_hint">密码</string>
+
+    <string name="toast_input_phone">请输入手机号</string>
+    <string name="toast_input_phone_error">请输入正确的手机号</string>
+    <string name="toast_input_area_code">请输入区号</string>
+    <string name="toast_input_pwd">请输入密码</string>
+    <string name="toast_input_verify_code">请输入验证码</string>
+    <string name="toast_input_birthday">请输入宝宝出生日期</string>
+    <string name="toast_input_sex">请输入选择宝宝性别</string>
+
+    <!-- register -->
+    <string name="reg_input_details_tips">请输入宝贝资料，我们将为您推荐最合适的内容</string>
+
+    <string name="forget_pwd_hint">输入新密码</string>
+    <string name="forget_pwd_code">验证码</string>
+    <string name="area_code">+86</string>
+
+    <!-- goods details -->
+    <string name="goods_details_price">售价</string>
+    <string name="goods_details_size">大小</string>
+    <string name="goods_details_ver">版本</string>
+    <string name="goods_details_class">分类</string>
+    <string name="goods_details_dev">开发者</string>
+    <string name="goods_details_update">更新</string>
+    <string name="goods_details_video">视频</string>
+    <string name="app_downloading">正在下载&#8230;&#8230;&#8230;</string>
+    <string name="app_complete">下载完成</string>
+    <string name="data_err">数据异常！</string>
+    <string name="install_fault">安装失败</string>
+
+    <!-- apps -->
+    <string name="apps_unlogin_no_data">未登录，无应用数据</string>
+
+    <string name="date_picker_title">选取出生日期</string>
+</resources>

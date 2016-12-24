@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_app_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingLeft="@dimen/dp_3"
+    android:paddingRight="@dimen/dp_3">
+
+    <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+        android:id="@+id/iv_app"
+        android:layout_width="@dimen/dp_264"
+        android:layout_height="@dimen/dp_173"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:focusable="true"
+        android:src="@mipmap/test_apps_item"
+        app:zoomInIv="@anim/app_scale_zoom_in"
+        app:zoomOutIv="@anim/app_scale_zoom_out" />
+
+    <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+        android:id="@+id/iv_del"
+        android:layout_width="@dimen/dp_65"
+        android:layout_height="@dimen/dp_24"
+        android:layout_below="@id/iv_app"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_25"
+        android:focusable="true"
+        android:src="@mipmap/icon_app_del"
+        android:visibility="gone"
+        app:zoomInIv="@anim/app_scale_zoom_in"
+        app:zoomOutIv="@anim/app_scale_zoom_out" />
+
+</RelativeLayout>

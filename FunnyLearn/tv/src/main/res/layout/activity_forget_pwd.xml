@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_main"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_50"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/dp_29"
+            android:layout_height="@dimen/dp_37"
+            android:focusable="true"
+            android:src="@mipmap/ic_back_pink"
+            app:zoomInIv="@anim/app_scale_zoom_in"
+            app:zoomOutIv="@anim/app_scale_zoom_out" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_108"
+            android:layout_height="@dimen/dp_35"
+            android:layout_marginLeft="@dimen/dp_62"
+            android:layout_marginTop="-5dp"
+            android:src="@mipmap/forget_pwd_left_title" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_area_code"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_34"
+            android:background="@mipmap/area_code"
+            android:enabled="false"
+            android:focusable="false"
+            android:gravity="center"
+            android:text="@string/area_code"
+            android:textColor="@color/color_5B5659"
+            android:textSize="@dimen/sp_16" />
+
+        <LinearLayout
+            android:id="@+id/ll_login_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_14"
+            android:layout_toRightOf="@id/et_area_code"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="@dimen/dp_250"
+                android:layout_height="@dimen/dp_35"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/reg_bg_et_mobile"
+                android:focusable="true"
+                android:hint="@string/login_mobile_hint"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/dp_15"
+                android:text=""
+                android:textColor="@color/color_5B5659"
+                android:textSize="@dimen/sp_16" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_34"
+                android:layout_marginTop="@dimen/dp_15"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_verify_code"
+                    android:layout_width="@dimen/dp_250"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/reg_bg_et_verify_code"
+                    android:focusable="true"
+                    android:hint="@string/forget_pwd_code"
+                    android:inputType="numberDecimal"
+                    android:maxLength="18"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/dp_15"
+                    android:text=""
+                    android:textColor="@color/color_5B5659"
+                    android:textSize="@dimen/sp_16" />
+
+                <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+                    android:id="@+id/iv_get_verify_code"
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp_14"
+                    android:focusable="true"
+                    android:src="@mipmap/get_verify_code" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="@dimen/dp_250"
+                android:layout_height="@dimen/dp_34"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/dp_15"
+                android:background="@mipmap/reg_bg_et_pwd"
+                android:focusable="true"
+                android:hint="@string/forget_pwd_hint"
+                android:inputType="textPassword"
+                android:maxLength="18"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/dp_15"
+                android:text=""
+                android:textColor="@color/color_5B5659"
+                android:textSize="@dimen/sp_16" />
+
+            <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+                android:id="@+id/iv_complete"
+                android:layout_width="@dimen/dp_250"
+                android:layout_height="@dimen/dp_34"
+                android:layout_marginTop="@dimen/dp_35"
+                android:focusable="true"
+                android:src="@mipmap/complete" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

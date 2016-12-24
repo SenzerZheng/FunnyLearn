@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<net.frontdo.funnylearn.ui.widget.ZoomableRelativeLay xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_good_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:paddingLeft="@dimen/dp_5"
+    android:paddingRight="@dimen/dp_5">
+
+    <RelativeLayout
+        android:id="@+id/rl_good"
+        android:layout_width="@dimen/dp_163"
+        android:layout_height="@dimen/dp_211"
+        android:padding="@dimen/dp_1">
+
+        <ImageView
+            android:id="@+id/iv_good"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_goods_item" />
+
+        <ImageView
+            android:id="@+id/iv_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/icon_video" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_good"
+        android:layout_marginTop="@dimen/dp_2"
+        android:text="宝贝英语说"
+        android:textColor="@color/color_F5FBFB"
+        android:textSize="@dimen/sp_10" />
+
+    <TextView
+        android:id="@+id/tv_play_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name"
+        android:layout_marginTop="@dimen/dp_neg_2"
+        android:text="143.8万次播放"
+        android:textColor="@color/color_7E7D7F"
+        android:textSize="@dimen/sp_9"
+        android:visibility="invisible" />
+
+</net.frontdo.funnylearn.ui.widget.ZoomableRelativeLay>

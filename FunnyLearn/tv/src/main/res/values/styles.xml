@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 对话框样式 -->
+    <style name="BaseDialogTheme" parent="@android:style/Theme.Holo.DialogWhenLarge">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!--Dialog-->
+    <style name="dialoglayout">
+        <item name="android:background">@color/white</item>
+        <item name="android:minHeight">160dp</item>
+        <item name="android:minWidth">300dp</item>
+    </style>
+
+    <style name="dialogTitleText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="dialogContent">
+        <item name="android:minHeight">60dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="dialogButton">
+        <item name="android:minHeight">50dp</item>
+        <item name="android:textColor">@color/dlg_btn</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- popwidnow 显示消失 动画 -->
+    <style name="base_popup_anim_style">
+        <!-- 指定显示的动画xml -->
+        <item name="android:windowEnterAnimation">@anim/pop_show_anim</item>
+        <!-- 指定消失的动画xml -->
+        <item name="android:windowExitAnimation">@anim/pop_hide_anim</item>
+    </style>
+</resources>

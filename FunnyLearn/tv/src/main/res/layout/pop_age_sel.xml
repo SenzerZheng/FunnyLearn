@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pop_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_320"
+        android:layout_height="@dimen/dp_250"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@mipmap/bg_dialog"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp_40">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/pop_age_title"
+            android:textColor="@color/color_5B5659"
+            android:textSize="@dimen/sp_15" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_35"
+            android:paddingRight="@dimen/dp_35">
+
+            <net.frontdo.funnylearn.ui.widget.ZoomableCheckBox
+                android:id="@+id/cb_age_all"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_33"
+                android:background="@drawable/selector_age_all"
+                android:button="@null" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_15"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingLeft="@dimen/dp_35"
+            android:paddingRight="@dimen/dp_35">
+
+            <net.frontdo.funnylearn.ui.widget.ZoomableCheckBox
+                android:id="@+id/cb_age_three"
+                android:layout_width="0dip"
+                android:layout_height="@dimen/dp_33"
+                android:layout_weight="1"
+                android:background="@drawable/selector_age_three"
+                android:button="@null" />
+
+            <net.frontdo.funnylearn.ui.widget.ZoomableCheckBox
+                android:id="@+id/cb_age_four"
+                android:layout_width="0dip"
+                android:layout_height="@dimen/dp_33"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:background="@drawable/selector_age_four"
+                android:button="@null"
+                android:checked="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_33"
+            android:layout_marginTop="@dimen/dp_15"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingLeft="@dimen/dp_35"
+            android:paddingRight="@dimen/dp_35">
+
+            <net.frontdo.funnylearn.ui.widget.ZoomableCheckBox
+                android:id="@+id/cb_age_five"
+                android:layout_width="0dip"
+                android:layout_height="@dimen/dp_33"
+                android:layout_weight="1"
+                android:background="@drawable/selector_age_five"
+                android:button="@null" />
+
+            <net.frontdo.funnylearn.ui.widget.ZoomableCheckBox
+                android:id="@+id/cb_age_six"
+                android:layout_width="0dip"
+                android:layout_height="@dimen/dp_33"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:background="@drawable/selector_age_six"
+                android:button="@null" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pop_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_340"
+        android:layout_height="@dimen/dp_255"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@mipmap/bg_dialog"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp_20">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/pop_mine_title"
+            android:textColor="@color/color_5B5659"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="@string/pop_mine_tips"
+            android:textColor="@color/color_6B6862"
+            android:textSize="@dimen/sp_16" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_45"
+            android:paddingRight="@dimen/dp_45">
+
+            <TextView
+                android:id="@+id/tv_birth_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/pop_mine_birth_date"
+                android:textColor="@color/color_5B5659"
+                android:textSize="@dimen/sp_16" />
+
+            <net.frontdo.funnylearn.ui.widget.ZoomableTextView
+                android:id="@+id/tv_sel_birth_date"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_35"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_toRightOf="@id/tv_birth_date"
+                android:background="@mipmap/bg_et_input_base_info"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:hint="@string/pop_mine_birth_date_hint"
+                android:maxLength="12"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/dp_15"
+                android:text=""
+                android:textSize="@dimen/sp_16" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_15"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingLeft="@dimen/dp_45"
+            android:paddingRight="@dimen/dp_45">
+
+            <TextView
+                android:id="@+id/tv_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/pop_mine_baby_sex"
+                android:textColor="@color/color_5B5659"
+                android:textSize="@dimen/sp_16" />
+
+            <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+                android:id="@+id/iv_male"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_38"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_toRightOf="@id/tv_sex"
+                android:focusable="true"
+                android:src="@mipmap/icon_male" />
+
+            <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+                android:id="@+id/iv_female"
+                android:layout_width="@dimen/dp_90"
+                android:layout_height="@dimen/dp_35"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_toRightOf="@id/iv_male"
+                android:focusable="true"
+                android:src="@mipmap/icon_female" />
+        </RelativeLayout>
+
+        <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+            android:id="@+id/iv_complete"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_35"
+            android:layout_marginBottom="@dimen/dp_18"
+            android:layout_marginLeft="@dimen/dp_45"
+            android:layout_marginRight="@dimen/dp_45"
+            android:layout_marginTop="@dimen/dp_18"
+            android:background="@mipmap/icon_complete"
+            android:focusable="true" />
+    </LinearLayout>
+
+</RelativeLayout>

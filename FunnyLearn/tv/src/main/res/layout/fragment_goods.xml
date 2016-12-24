@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp_52"
+    android:paddingLeft="@dimen/dp_52"
+    android:paddingRight="@dimen/dp_52"
+    android:paddingTop="@dimen/dp_63">
+
+    <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+        android:id="@+id/iv_previous"
+        android:layout_width="@dimen/dp_61"
+        android:layout_height="@dimen/dp_35"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_12"
+        android:focusable="true"
+        android:src="@mipmap/icon_previous"
+        android:visibility="gone" />
+
+    <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+        android:id="@+id/iv_next"
+        android:layout_width="@dimen/dp_61"
+        android:layout_height="@dimen/dp_35"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/dp_12"
+        android:focusable="true"
+        android:src="@mipmap/icon_next"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:focusable="true" />
+
+</RelativeLayout>

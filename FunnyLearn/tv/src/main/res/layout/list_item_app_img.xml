@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_app_img_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/dp_3"
+    android:paddingRight="@dimen/dp_3">
+
+    <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+        android:id="@+id/iv_app_img"
+        android:layout_width="@dimen/dp_180"
+        android:layout_height="@dimen/dp_120"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/test_apps_item" />
+</RelativeLayout>

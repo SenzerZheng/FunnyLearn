@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_video_piece"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:gravity="center"
+    android:padding="@dimen/dp_5">
+
+    <net.frontdo.funnylearn.ui.widget.ZoomableTextView
+        android:id="@+id/tv_video_piece"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_25"
+        android:background="@mipmap/details_icon_video_type"
+        android:focusable="true"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dp_3"
+        android:paddingTop="@dimen/dp_3"
+        android:text="MAO-1"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_11"
+        app:zoomInIv="@anim/app_scale_zoom_in"
+        app:zoomOutIv="@anim/app_scale_zoom_out" />
+</RelativeLayout>
