@@ -19,14 +19,14 @@
 
         <ImageView
             android:id="@+id/iv_cover"
-            android:layout_width="@dimen/dp_158"
-            android:layout_height="@dimen/dp_203"
+            android:layout_width="@dimen/dp_200"
+            android:layout_height="@dimen/dp_260"
             android:src="@mipmap/details_test_cover" />
 
         <ImageView
             android:id="@+id/iv_latest"
-            android:layout_width="@dimen/dp_55"
-            android:layout_height="@dimen/dp_55"
+            android:layout_width="@dimen/dp_65"
+            android:layout_height="@dimen/dp_65"
             android:layout_alignBottom="@id/iv_cover"
             android:layout_alignRight="@id/iv_cover"
             android:src="@mipmap/icon_latest" />
@@ -35,7 +35,7 @@
     <RelativeLayout
         android:id="@+id/rl_title"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp_40"
+        android:layout_height="@dimen/dp_60"
         android:layout_toRightOf="@id/rl_cover"
         android:orientation="horizontal">
 
@@ -46,12 +46,12 @@
             android:layout_centerVertical="true"
             android:text="MIAO咪噢"
             android:textColor="@color/color_626060"
-            android:textSize="@dimen/sp_18" />
+            android:textSize="@dimen/sp_20" />
 
         <net.frontdo.funnylearn.ui.widget.ZoomableCheckBox
             android:id="@+id/cb_fav"
-            android:layout_width="@dimen/dp_75"
-            android:layout_height="@dimen/dp_27"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_30"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_15"
             android:layout_toRightOf="@id/tv_title"
@@ -70,7 +70,7 @@
             android:layout_marginLeft="@dimen/dp_10"
             android:text="8.9"
             android:textColor="@color/red"
-            android:textSize="@dimen/sp_22" />
+            android:textSize="@dimen/sp_24" />
 
         <net.frontdo.funnylearn.ui.widget.VerticalStarBar
             android:id="@+id/rb_score"
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_title"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_15"
         android:layout_toRightOf="@id/rl_cover"
         android:visibility="visible">
 
@@ -113,7 +113,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/goods_details_price"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
 
             <TextView
                 android:id="@+id/tv_price"
@@ -122,7 +122,7 @@
                 android:layout_marginLeft="@dimen/dp_30"
                 android:text="￥1099"
                 android:textColor="@color/red"
-                android:textSize="@dimen/sp_18" />
+                android:textSize="@dimen/sp_20" />
         </LinearLayout>
 
         <LinearLayout
@@ -130,7 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_price"
-            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_30"
             android:orientation="horizontal">
 
             <TextView
@@ -139,7 +139,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/goods_details_size"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
 
             <TextView
                 android:id="@+id/tv_size"
@@ -148,7 +148,7 @@
                 android:layout_marginLeft="@dimen/dp_30"
                 android:text="92M"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
         </LinearLayout>
 
         <LinearLayout
@@ -156,7 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_size"
-            android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginTop="@dimen/dp_15"
             android:orientation="horizontal">
 
             <TextView
@@ -165,7 +165,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/goods_details_ver"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
 
             <TextView
                 android:id="@+id/tv_ver"
@@ -174,7 +174,7 @@
                 android:layout_marginLeft="@dimen/dp_30"
                 android:text="1.0.3"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
         </LinearLayout>
 
         <LinearLayout
@@ -182,7 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_ver"
-            android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginTop="@dimen/dp_15"
             android:orientation="horizontal">
 
             <TextView
@@ -191,7 +191,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/goods_details_class"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
 
             <TextView
                 android:id="@+id/tv_class"
@@ -200,7 +200,7 @@
                 android:layout_marginLeft="@dimen/dp_30"
                 android:text="AR教学"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
         </LinearLayout>
 
         <LinearLayout
@@ -208,7 +208,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_class"
-            android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginTop="@dimen/dp_15"
             android:orientation="horizontal"
             android:visibility="gone">
 
@@ -218,7 +218,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/goods_details_dev"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
 
             <TextView
                 android:id="@+id/tv_dev"
@@ -227,7 +227,7 @@
                 android:layout_marginLeft="@dimen/dp_15"
                 android:text="MIAO"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
         </LinearLayout>
 
         <LinearLayout
@@ -235,7 +235,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_dev"
-            android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginTop="@dimen/dp_15"
             android:orientation="horizontal">
 
             <TextView
@@ -244,7 +244,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/goods_details_update"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
 
             <TextView
                 android:id="@+id/tv_update"
@@ -253,11 +253,11 @@
                 android:layout_marginLeft="@dimen/dp_30"
                 android:text="2016年12月"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="@dimen/dp_85"
+            android:layout_width="@dimen/dp_100"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/dp_20"
@@ -267,14 +267,14 @@
             <net.frontdo.funnylearn.ui.widget.ZoomableImageView
                 android:id="@+id/iv_install_status"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_41"
+                android:layout_height="@dimen/dp_55"
                 android:focusable="true"
                 android:src="@mipmap/details_install_ok" />
 
             <ImageView
                 android:id="@+id/iv_top_qr_code"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_80"
+                android:layout_height="@dimen/dp_100"
                 android:layout_marginTop="@dimen/dp_8"
                 android:src="@mipmap/details_test_qr_code" />
         </LinearLayout>
@@ -286,7 +286,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_title"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_15"
         android:layout_toRightOf="@id/rl_cover"
         android:clipChildren="false"
         android:clipToPadding="false"
@@ -296,7 +296,7 @@
             android:id="@+id/ll_video_class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginTop="@dimen/dp_15"
             android:orientation="horizontal">
 
             <TextView
@@ -305,16 +305,16 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/goods_details_class"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
 
             <TextView
                 android:id="@+id/tv_video_class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginLeft="@dimen/dp_40"
                 android:text="AR教学"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
         </LinearLayout>
 
         <LinearLayout
@@ -322,8 +322,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_video_class"
-            android:layout_marginTop="@dimen/dp_6"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/dp_15"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -331,16 +332,16 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/goods_details_dev"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
 
             <TextView
                 android:id="@+id/tv_video_dev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginLeft="@dimen/dp_20"
                 android:text="MIAO"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
         </LinearLayout>
 
         <LinearLayout
@@ -348,7 +349,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_video_dev"
-            android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginTop="@dimen/dp_17"
             android:orientation="horizontal">
 
             <TextView
@@ -357,16 +358,16 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/goods_details_update"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
 
             <TextView
                 android:id="@+id/tv_video_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginLeft="@dimen/dp_40"
                 android:text="2016年12月"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
         </LinearLayout>
 
         <LinearLayout
@@ -374,7 +375,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_video_update"
-            android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginTop="@dimen/dp_15"
             android:orientation="horizontal">
 
             <TextView
@@ -383,13 +384,13 @@
                 android:layout_gravity="top"
                 android:text="@string/goods_details_video"
                 android:textColor="@color/color_737272"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_17" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_30" />
+                android:layout_marginLeft="@dimen/dp_40" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

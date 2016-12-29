@@ -501,10 +501,18 @@ public class DetailsActivity extends BaseHoldBackActivity implements
             }
             tvVer.setText(tempPro.getProductApkVersion());
 
-            if (!CameraUtils.hasFrontFacingCamera()) {
+            if (!CameraUtils.hasFrontFacingCamera()) {      // do not exist camera
                 ivIsHasCamera.setVisibility(View.VISIBLE);
+                ivIsHasCamera.setImageResource(R.mipmap.details_not_camera);
+
                 ivInstallStatus.setImageResource(R.mipmap.details_install_no);
                 ivInstallStatus.setEnabled(false);
+            } else {                                        // exist camera
+//                ivIsHasCamera.setVisibility(View.VISIBLE);
+//                ivIsHasCamera.setImageResource(R.mipmap.details_has_camera);
+
+                ivInstallStatus.setImageResource(R.mipmap.details_install_ok);
+                ivInstallStatus.setEnabled(true);
             }
         } else {                                            // AR Good
             rlApp.setVisibility(View.GONE);
