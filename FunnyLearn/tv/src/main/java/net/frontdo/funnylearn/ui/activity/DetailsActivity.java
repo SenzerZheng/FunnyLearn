@@ -492,7 +492,7 @@ public class DetailsActivity extends BaseHoldBackActivity implements
             tvDev.setText(tempPro.getProductDeveloper());
             tvUpdate.setText(DateUtil.getCNDate(tempPro.getProductModifyDate()));
 
-            tvPrice.setText(String.valueOf(tempPro.getPrice()));
+            tvPrice.setText("" + StringUtil.getFormatPrice(tempPro.getPrice()));
             // size
             if (StringUtil.checkEmpty(tempPro.getProductSize())) {
                 tvSize.setText("0 MB");

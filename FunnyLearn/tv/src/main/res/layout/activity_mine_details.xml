@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/pop_mine_birth_date_hint"
+                    android:text="@string/mine_baby_sex"
                     android:textColor="@color/color_575352"
                     android:textSize="@dimen/sp_13"
                     android:textStyle="bold" />

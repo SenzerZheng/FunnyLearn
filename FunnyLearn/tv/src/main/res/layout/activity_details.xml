@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_eeeeee"
+    android:background="@color/white"
     android:clipChildren="false"
     android:clipToPadding="false">
 
@@ -51,6 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_400"
                 android:layout_marginTop="@dimen/dp_15"
+
                 android:src="@mipmap/details_test_desc"
                 android:visibility="visible" />
 

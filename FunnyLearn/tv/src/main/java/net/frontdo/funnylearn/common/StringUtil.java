@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 /**
  * ProjectName: StringUtil
  * Description:
- *
+ * <p>
  * author: JeyZheng
  * version: 1.0
  * created at: 10/23/2016 12:55
@@ -26,7 +26,10 @@ public class StringUtil {
     public static final String TAG = "StringUtil";
     public static final int PHONE_LEN = 11;
     public static final String MONEY_MARK = "¥";
-    public static DecimalFormat decimalformat = new DecimalFormat("0.00");
+    public static final String MONEY_FORMAT = "¥0.00";
+
+    // decimal format(int, float)
+    public static DecimalFormat decimalformat = new DecimalFormat(MONEY_FORMAT);
 
     /**
      * 获取价格字符串
@@ -54,8 +57,9 @@ public class StringUtil {
      * @return
      */
     public static String appendMoneyMark(String money) {
-        if (TextUtils.isEmpty(money))
+        if (TextUtils.isEmpty(money)) {
             return "¥0.00";
+        }
         return "¥" + money;
     }
 

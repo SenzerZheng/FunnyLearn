@@ -2,6 +2,7 @@
 <resources>
     <!--base color setting-->
     <color name="transparent">@android:color/transparent</color>
+    <color name="translucent_double">#A0000000</color>
     <color name="translucent">#50000000</color>
     <color name="translucent_half">#0D000000</color>
 

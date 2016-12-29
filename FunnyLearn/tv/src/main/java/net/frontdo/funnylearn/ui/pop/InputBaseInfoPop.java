@@ -101,7 +101,7 @@ public class InputBaseInfoPop {
                 DatePickerDialogUtil.showCur(mContext, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        tvBirthday.setText(year + "-" + month + "-" + dayOfMonth);
+                        tvBirthday.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                     }
                 });
             }

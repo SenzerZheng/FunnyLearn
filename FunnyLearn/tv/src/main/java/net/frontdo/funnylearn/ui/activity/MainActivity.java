@@ -16,9 +16,11 @@ package net.frontdo.funnylearn.ui.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +31,7 @@ import net.frontdo.funnylearn.R;
 import net.frontdo.funnylearn.app.AppContext;
 import net.frontdo.funnylearn.base.BaseFragment;
 import net.frontdo.funnylearn.base.BaseHoldBackActivity;
+import net.frontdo.funnylearn.common.ActivityStack;
 import net.frontdo.funnylearn.common.DateUtil;
 import net.frontdo.funnylearn.common.DeviceHelper;
 import net.frontdo.funnylearn.common.StringUtil;
@@ -267,6 +270,33 @@ public class MainActivity extends BaseHoldBackActivity implements
         if (null != mInputBaseInfoPop) {
             mInputBaseInfoPop.release();
         }
+    }
+
+    // ------------------ exit app --------------------
+    private boolean isBacking = false;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (isBacking) {
+                hide();
+
+                ActivityStack.getInstanse().exit();
+            } else {
+                isBacking = true;
+
+                toast("再按一次退出！");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isBacking = false;
+                        hide();
+                    }
+                }, 2000);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     // ################### Network Request Start ###################

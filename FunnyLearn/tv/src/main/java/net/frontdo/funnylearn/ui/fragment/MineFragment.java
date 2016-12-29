@@ -75,7 +75,7 @@ public class MineFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_details:               // 帐号信息
-                toast("帐号信息");
+//                toast("帐号信息");
 
                 if (AppContext.getInstance().isLogin()) {       // 已登录
 

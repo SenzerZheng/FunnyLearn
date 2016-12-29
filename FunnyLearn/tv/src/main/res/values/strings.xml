@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">趣味乐园</string>
+    <string name="app_name">蝌蚪乐园</string>
 
     <string name="tips_unknow_mistake">服务器开小差了，请稍后再试</string>
     <string name="loading">加载中&#8230;</string>
@@ -31,7 +31,7 @@
 
     <!-- account info -->
     <string name="mine_login_amount">当前登录的用户</string>
-    <string name="mine_baby_sex">宝 宝 性 别</string>
+    <string name="mine_baby_sex">宝&#160;&#160;&#160;宝&#160;&#160;&#160;性&#160;&#160;&#160;别</string>
     <string name="mine_sex_boy">小王子</string>
     <string name="mine_sex_girl">小公主</string>
 

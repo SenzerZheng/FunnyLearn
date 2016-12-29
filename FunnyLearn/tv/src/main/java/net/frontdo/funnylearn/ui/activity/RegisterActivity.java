@@ -1,5 +1,6 @@
 package net.frontdo.funnylearn.ui.activity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,10 +13,13 @@ import android.widget.TextView;
 import net.frontdo.funnylearn.R;
 import net.frontdo.funnylearn.app.AppContext;
 import net.frontdo.funnylearn.base.BaseHoldBackActivity;
+import net.frontdo.funnylearn.common.ActivityStack;
 import net.frontdo.funnylearn.common.DatePickerDialogUtil;
 import net.frontdo.funnylearn.common.StringUtil;
 import net.frontdo.funnylearn.net.FrontdoSubcriber;
+import net.frontdo.funnylearn.net.bean.ReqLogin;
 import net.frontdo.funnylearn.net.bean.ReqRegister;
+import net.frontdo.funnylearn.ui.entity.MainInfo;
 import net.frontdo.funnylearn.ui.entity.SMSCode;
 import net.frontdo.funnylearn.ui.entity.UserInfo;
 
@@ -155,7 +159,7 @@ public class RegisterActivity extends BaseHoldBackActivity {
                 DatePickerDialogUtil.showCur(RegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        tvSelBirthDate.setText(year + "-" + month + "-" + dayOfMonth);
+                        tvSelBirthDate.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                     }
                 });
                 break;
@@ -177,9 +181,11 @@ public class RegisterActivity extends BaseHoldBackActivity {
                     public void onSuccess(String code, UserInfo userInfo) {
                         dismissProgressDlg();
 
-//                        AppContext.getInstance().saveUserInfo(userInfo);
-                        toast("注册成功，请登录！");
-                        finish();
+//                        toast("注册成功，请登录！");
+//                        finish();
+
+                        ReqLogin reqLogin = new ReqLogin(userInfo.getMemberMobile(), userInfo.getPwd());
+                        login(reqLogin);
                     }
 
                     @Override
@@ -204,6 +210,38 @@ public class RegisterActivity extends BaseHoldBackActivity {
 
 //                        toast("验证码已发送成功：" + verifyCode.getVerifyCode());
                         toast("验证码已发送成功");
+                    }
+
+                    @Override
+                    public void onFailure(String code, String message) {
+                        dismissProgressDlg();
+                        toast(message);
+                    }
+                });
+        addSubscription(subscription);
+    }
+
+    private void login(ReqLogin reqLogin) {
+        showProgressDlg(null, true);
+
+        Subscription subscription = apiService.userLogin(reqLogin)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new FrontdoSubcriber<Response, MainInfo>() {
+                    @Override
+                    public void onSuccess(String code, MainInfo data) {
+                        dismissProgressDlg();
+
+                        UserInfo uInfo = data.getMemberDO();
+                        AppContext.getInstance().saveUserInfo(uInfo);
+                        toast("登录成功！");
+
+                        for (Activity aty : ActivityStack.getInstanse().activityList) {
+                            if (aty instanceof LoginActivity) {
+                                aty.finish();
+                            }
+                        }
+                        finish();
                     }
 
                     @Override
