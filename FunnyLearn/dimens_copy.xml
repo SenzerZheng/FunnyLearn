@@ -1,6 +1,15 @@
 <resources>
     <dimen name="dlg_min_height_no_title">@dimen/dp_120</dimen>
 
+    <dimen name="divider_height">5dp</dimen>
+
+    <!-- title bar -->
+    <dimen name="title_bar_height">@dimen/dp_45</dimen>
+    <dimen name="title_bar_center_1">@dimen/sp_18</dimen>
+    <dimen name="title_bar_center_2">@dimen/sp_20</dimen>
+    <dimen name="title_bar_right_1">@dimen/sp_15</dimen>
+    <dimen name="title_bar_right_2">@dimen/sp_20</dimen>
+
     <!-- BaseDimentions -->
     <dimen name="dp_neg_68">-68dp</dimen>
     <dimen name="dp_neg_1">-1dp</dimen>
@@ -343,6 +352,9 @@
     <dimen name="dp_580">580dp</dimen>
     <dimen name="dp_590">590dp</dimen>
     <dimen name="dp_600">600dp</dimen>
+    <dimen name="dp_700">700dp</dimen>
+    <dimen name="dp_800">800dp</dimen>
+    <dimen name="dp_1080">1080dp</dimen>
 
     <!-- BaseFonts -->
     <dimen name="sp_1">1sp</dimen>
