@@ -63,7 +63,7 @@ public class GoodsRVAdapter extends BaseRVAdapter<GoodsRVAdapter.ItemViewHolder>
 
     private void fillData(ItemViewHolder holder, Product data) {
         holder.tvName.setText(data.getName());
-        PhotoLoader.display(mContext, holder.ivGood, data.getProductCoverVerti(), R.mipmap.ic_launcher);
+        PhotoLoader.display(mContext, holder.ivGood, data.getProductCoverVerti(), R.mipmap.place_holder);
 
         if (Product.P_TYPE_VIDEO == data.getType()) {          // AR
 

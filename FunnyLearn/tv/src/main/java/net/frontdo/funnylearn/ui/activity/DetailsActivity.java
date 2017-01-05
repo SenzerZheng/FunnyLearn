@@ -452,8 +452,8 @@ public class DetailsActivity extends BaseHoldBackActivity implements
         }
 
         // images
-        PhotoLoader.display(this, ivCover, tempPro.getProductCoverVerti(), R.mipmap.ic_launcher);
-        PhotoLoader.display(this, ivGoodsDesc, tempPro.getProductDesc(), R.mipmap.ic_launcher);
+        PhotoLoader.display(this, ivCover, tempPro.getProductCoverVerti(), R.mipmap.place_holder);
+        PhotoLoader.display(this, ivGoodsDesc, tempPro.getProductDesc(), R.mipmap.place_holder);
         // qrCode
         String qrCodeUrl = "";
         if (Product.P_ENABLE == product.getProductAppEnabled()) {
@@ -461,14 +461,14 @@ public class DetailsActivity extends BaseHoldBackActivity implements
         } else {
             qrCodeUrl = tempPro.getProductMicroStoreByecodeAddr();
         }
-        PhotoLoader.display(this, ivTopQrCode, qrCodeUrl, R.mipmap.ic_launcher);
+        PhotoLoader.display(this, ivTopQrCode, qrCodeUrl, R.mipmap.place_holder);
 
         // trial
         if (Product.P_ENABLE == product.getProductTrialEnabled()) {
 
             ivTrialTips.setVisibility(View.VISIBLE);
             ivGoodTrial.setVisibility(View.VISIBLE);
-            PhotoLoader.display(this, ivGoodTrial, tempPro.getProductTrialAddr(), R.mipmap.ic_launcher);
+            PhotoLoader.display(this, ivGoodTrial, tempPro.getProductTrialAddr(), R.mipmap.place_holder);
         } else {
 
             ivTrialTips.setVisibility(View.GONE);

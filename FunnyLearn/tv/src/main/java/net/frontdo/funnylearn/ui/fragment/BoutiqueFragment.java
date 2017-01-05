@@ -221,14 +221,14 @@ public class BoutiqueFragment extends BaseFragment implements SelAgePop.OnAgeAre
                         layouts = data.getLayoutDOs();
                         if (null != layouts && !layouts.isEmpty()) {
                             PhotoLoader.display(getActivity(), ivCover01,
-                                    layouts.get(0).getLayoutProdUrl(), R.mipmap.ic_launcher);
+                                    layouts.get(0).getLayoutProdUrl(), R.mipmap.place_holder);
 
                             PhotoLoader.display(getActivity(), ivCover02,
-                                    layouts.get(1).getLayoutProdUrl(), R.mipmap.ic_launcher);
+                                    layouts.get(1).getLayoutProdUrl(), R.mipmap.place_holder);
                             PhotoLoader.display(getActivity(), ivCover03,
-                                    layouts.get(2).getLayoutProdUrl(), R.mipmap.ic_launcher);
+                                    layouts.get(2).getLayoutProdUrl(), R.mipmap.place_holder);
                             PhotoLoader.display(getActivity(), ivCover04,
-                                    layouts.get(3).getLayoutProdUrl(), R.mipmap.ic_launcher);
+                                    layouts.get(3).getLayoutProdUrl(), R.mipmap.place_holder);
 
                             if (layouts.get(1).getProductRecommend() == Product.P_RCMD_NO) {
                                 ivRcmd02.setVisibility(View.GONE);

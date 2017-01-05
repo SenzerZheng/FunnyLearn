@@ -104,7 +104,7 @@ public class AppsRVAdapter extends BaseRVAdapter<AppsRVAdapter.ItemViewHolder> {
     }
 
     private void fillData(ItemViewHolder holder, Product data) {
-        PhotoLoader.display(mContext, holder.ivApp, data.getProductCoverHori(), R.mipmap.ic_launcher);
+        PhotoLoader.display(mContext, holder.ivApp, data.getProductCoverHori(), R.mipmap.place_holder);
     }
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {

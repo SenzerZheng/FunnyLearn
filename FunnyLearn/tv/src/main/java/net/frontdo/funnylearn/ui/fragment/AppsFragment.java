@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import net.frontdo.funnylearn.R;
 import net.frontdo.funnylearn.app.AppContext;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import retrofit.Response;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -54,6 +56,8 @@ public class AppsFragment extends BaseFragment implements
 
     @Bind(R.id.recycler)
     RecyclerView recycler;
+    @Bind(R.id.iv_empty)
+    ImageView ivEmpty;
 
     private AppsRVAdapter adapter;
     private List mDatasource;
@@ -153,6 +157,7 @@ public class AppsFragment extends BaseFragment implements
                         dismissProgressDlg();
                         if (null != products && !products.isEmpty()) {
 
+                            ivEmpty.setVisibility(View.GONE);
                             mDatasource = products;
                         } else {
 
@@ -276,6 +281,12 @@ public class AppsFragment extends BaseFragment implements
                 }
             }
         }.start();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
     // ----------------- download and install apk end ---------------------
 

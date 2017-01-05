@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="style_date_picker_dialog" parent="Theme.AppCompat.Light.Dialog">
+    <!--
+        Theme.AppCompat.Light.Dialog
+
+        android:Theme.Light
+        android:Theme.Holo.Light
+     -->
+    <style name="style_date_picker_dialog" parent="android:Theme.Light">
         <item name="android:datePickerStyle">@style/style_date_picker</item>
     </style>
 

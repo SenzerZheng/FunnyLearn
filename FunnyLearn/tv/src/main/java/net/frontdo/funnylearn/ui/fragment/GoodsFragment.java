@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import net.frontdo.funnylearn.R;
 import net.frontdo.funnylearn.app.AppContext;
@@ -17,6 +18,7 @@ import net.frontdo.funnylearn.ui.widget.ZoomableImageView;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit.Response;
 import rx.Subscription;
@@ -44,6 +46,8 @@ public class GoodsFragment extends BaseFragment implements
     ZoomableImageView ivPrevious;
     @Bind(R.id.iv_next)
     ZoomableImageView ivNext;
+    @Bind(R.id.iv_empty)
+    ImageView ivEmpty;
 
     private LinearLayoutManager llmGoods;
     private GoodsRVAdapter adapter;
@@ -161,6 +165,7 @@ public class GoodsFragment extends BaseFragment implements
                     public void onSuccess(String code, List<Product> products) {
                         dismissProgressDlg();
                         if (null != products && !products.isEmpty()) {
+                            ivEmpty.setVisibility(View.GONE);
 
                             mDatasource = products;
                             adapter = new GoodsRVAdapter(getActivity(), products);
@@ -182,6 +187,12 @@ public class GoodsFragment extends BaseFragment implements
                     }
                 });
         addSubscription(subscription);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
     // ################### Network Request End #####################
 }

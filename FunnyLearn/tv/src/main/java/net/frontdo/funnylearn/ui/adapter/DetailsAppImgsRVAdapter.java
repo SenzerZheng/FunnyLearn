@@ -57,7 +57,7 @@ public class DetailsAppImgsRVAdapter extends BaseRVAdapter<DetailsAppImgsRVAdapt
     }
 
     private void fillData(ItemViewHolder holder, String data) {
-        PhotoLoader.display(mContext, holder.ivAppImg, data, R.mipmap.ic_launcher);
+        PhotoLoader.display(mContext, holder.ivAppImg, data, R.mipmap.place_holder);
     }
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {

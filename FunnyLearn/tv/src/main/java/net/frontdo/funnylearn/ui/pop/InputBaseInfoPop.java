@@ -98,6 +98,13 @@ public class InputBaseInfoPop {
         tvBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /**
+                 *
+                 *  TODO: 搞搞日起选择控件，选中效果
+                 *
+                 *
+                 */
                 DatePickerDialogUtil.showCur(mContext, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

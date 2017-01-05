@@ -70,6 +70,8 @@ public class DateListActivity extends BaseHoldBackActivity implements
     SlidingRecyclerView rvList;
     @Bind(R.id.iv_left_title)
     ImageView ivLeftTitle;
+    @Bind(R.id.iv_empty)
+    ImageView ivEmpty;
 
     private GridLayoutManager manager;
     private DateListRVAdapter mGoodsAdapter;
@@ -221,6 +223,7 @@ public class DateListActivity extends BaseHoldBackActivity implements
             return new ArrayList<>();
         }
 
+        ivEmpty.setVisibility(View.GONE);
         List<Product> desPros = new ArrayList<>();
         desPros.add(srcPros.get(0));
 
@@ -320,6 +323,7 @@ public class DateListActivity extends BaseHoldBackActivity implements
                     public void onSuccess(String code, List<Product> products) {
                         dismissProgressDlg();
                         if (null != products && !products.isEmpty()) {
+                            ivEmpty.setVisibility(View.GONE);
 
                             mGoods = products;
                             mGoodsAdapter.setDataSource(products, false);
@@ -346,6 +350,7 @@ public class DateListActivity extends BaseHoldBackActivity implements
                     public void onSuccess(String code, List<Product> products) {
                         dismissProgressDlg();
                         if (null != products && !products.isEmpty()) {
+                            ivEmpty.setVisibility(View.GONE);
 
                             mGoods = products;
                             mGoodsAdapter.setDataSource(products, false);

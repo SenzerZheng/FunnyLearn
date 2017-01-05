@@ -96,7 +96,7 @@ public class DateListRVAdapter extends SectionedRVAdapter<DateListRVAdapter.Item
         holder.tvName.setText(data.getName());
 
         // set cover
-        PhotoLoader.display(mContext, holder.ivGood, data.getProductCoverVerti(), R.mipmap.ic_launcher);
+        PhotoLoader.display(mContext, holder.ivGood, data.getProductCoverVerti(), R.mipmap.place_holder);
         if (Product.P_TYPE_VIDEO == data.getType()) {          // AR
 
             holder.ivOverlay.setVisibility(View.VISIBLE);
