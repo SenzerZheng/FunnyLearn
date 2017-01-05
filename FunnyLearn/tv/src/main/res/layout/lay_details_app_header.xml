@@ -21,6 +21,7 @@
             android:id="@+id/iv_cover"
             android:layout_width="@dimen/dp_200"
             android:layout_height="@dimen/dp_260"
+            android:scaleType="fitXY"
             android:src="@mipmap/details_test_cover" />
 
         <ImageView
@@ -276,6 +277,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_100"
                 android:layout_marginTop="@dimen/dp_8"
+                android:scaleType="fitXY"
                 android:src="@mipmap/details_test_qr_code" />
         </LinearLayout>
     </RelativeLayout>
@@ -376,6 +378,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_video_update"
             android:layout_marginTop="@dimen/dp_15"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:orientation="horizontal">
 
             <TextView
@@ -390,7 +394,9 @@
                 android:id="@+id/rv_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_40" />
+                android:layout_marginLeft="@dimen/dp_40"
+                android:clipChildren="false"
+                android:clipToPadding="false" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

@@ -161,6 +161,7 @@ public class AppsFragment extends BaseFragment implements
                             mDatasource = products;
                         } else {
 
+                            ivEmpty.setVisibility(View.VISIBLE);
                             products = new ArrayList<>();
                         }
                         adapter.setDataSource(products, false);

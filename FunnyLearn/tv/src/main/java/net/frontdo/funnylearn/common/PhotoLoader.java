@@ -49,7 +49,8 @@ public class PhotoLoader {
                 .load(url)
                 .placeholder(resId)
                 .error(resId)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)//default
+                .skipMemoryCache(false)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }
 

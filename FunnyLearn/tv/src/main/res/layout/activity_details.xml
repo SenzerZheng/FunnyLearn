@@ -108,6 +108,7 @@
                 android:layout_height="@dimen/dp_50"
                 android:layout_marginTop="@dimen/dp_30"
                 android:background="@mipmap/details_tips_app_imgs"
+                android:scaleType="fitXY"
                 android:visibility="visible" />
         </LinearLayout>
 

@@ -177,6 +177,8 @@ public class GoodsFragment extends BaseFragment implements
                                 ivPrevious.setVisibility(View.VISIBLE);
                                 ivNext.setVisibility(View.VISIBLE);
                             }
+                        } else {
+                            ivEmpty.setVisibility(View.VISIBLE);
                         }
                     }
 

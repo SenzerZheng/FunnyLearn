@@ -33,7 +33,6 @@ import net.frontdo.funnylearn.base.BaseFragment;
 import net.frontdo.funnylearn.base.BaseHoldBackActivity;
 import net.frontdo.funnylearn.common.ActivityStack;
 import net.frontdo.funnylearn.common.DateUtil;
-import net.frontdo.funnylearn.common.DeviceHelper;
 import net.frontdo.funnylearn.common.StringUtil;
 import net.frontdo.funnylearn.logger.FrontdoLogger;
 import net.frontdo.funnylearn.net.FrontdoSubcriber;
@@ -358,8 +357,8 @@ public class MainActivity extends BaseHoldBackActivity implements
     // --------- MainTitleRVAdapter.OnItemActionsListener - onItemClick ----------
     @Override
     public void onItemClick(int pos) {
-        String resolution = DeviceHelper.getScreentWidth(this) + ", " + DeviceHelper.getScreentHight(this);
-        toast("分辨率：" + resolution);
+//        String resolution = DeviceHelper.getScreentWidth(this) + ", " + DeviceHelper.getScreentHight(this);
+//        toast("分辨率：" + resolution);
 
         BaseFragment fragment = getFragmentByPos(pos);
         switchMainFragment(fragment);

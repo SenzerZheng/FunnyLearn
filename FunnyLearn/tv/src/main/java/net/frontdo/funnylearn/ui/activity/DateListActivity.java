@@ -220,6 +220,7 @@ public class DateListActivity extends BaseHoldBackActivity implements
         final int RECENT_DAY_COUNT = 3;
         List<Product> srcPros = AppContext.getInstance().gainSees();
         if (null == srcPros || srcPros.isEmpty()) {
+            ivEmpty.setVisibility(View.VISIBLE);
             return new ArrayList<>();
         }
 
@@ -327,6 +328,8 @@ public class DateListActivity extends BaseHoldBackActivity implements
 
                             mGoods = products;
                             mGoodsAdapter.setDataSource(products, false);
+                        } else {
+                            ivEmpty.setVisibility(View.VISIBLE);
                         }
                     }
 
@@ -354,6 +357,8 @@ public class DateListActivity extends BaseHoldBackActivity implements
 
                             mGoods = products;
                             mGoodsAdapter.setDataSource(products, false);
+                        } else {
+                            ivEmpty.setVisibility(View.VISIBLE);
                         }
                     }
 
@@ -386,6 +391,10 @@ public class DateListActivity extends BaseHoldBackActivity implements
                                 products.remove(product);
                                 break;
                             }
+                        }
+
+                        if (null == products || products.isEmpty()) {
+                            ivEmpty.setVisibility(View.VISIBLE);
                         }
                         mGoodsAdapter.notifyDataSetChanged();
                     }

@@ -113,7 +113,7 @@ public class DateListRVAdapter extends SectionedRVAdapter<DateListRVAdapter.Item
     }
 
     private void bindListener(ItemViewHolder holder, final int absolutePosition) {
-        holder.ivGood.setOnClickListener(new View.OnClickListener() {
+        holder.rlGood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != itemActionsListener) {
