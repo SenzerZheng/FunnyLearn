@@ -48,6 +48,8 @@
             android:layout_height="@dimen/dp_180"
             android:layout_gravity="center"
             android:background="@mipmap/bg_dialog"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingBottom="@dimen/dp_28"
             android:paddingTop="@dimen/dp_28">
@@ -90,6 +92,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_18"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/dp_35"
                 android:paddingRight="@dimen/dp_35">
@@ -104,24 +108,23 @@
                     android:textSize="@dimen/sp_13"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/et_birthday"
+                <net.frontdo.funnylearn.ui.widget.ZoomableTextView
+                    android:id="@+id/tv_sel_birth_date"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_30"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/dp_28"
                     android:layout_toRightOf="@id/tv_birthday"
                     android:background="@mipmap/bg_et_mine_details"
-                    android:enabled="false"
                     android:focusable="true"
+                    android:gravity="center_vertical"
                     android:hint="@string/pop_mine_birth_date_hint"
                     android:maxLength="12"
                     android:maxLines="1"
                     android:paddingLeft="@dimen/dp_15"
-                    android:text="2012-08-09"
+                    android:text=""
                     android:textColor="@color/color_5B5659"
                     android:textSize="@dimen/sp_16" />
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -143,24 +146,25 @@
                     android:textSize="@dimen/sp_13"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/et_sex"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_30"
+                <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+                    android:id="@+id/iv_male"
+                    android:layout_width="@dimen/dp_70"
+                    android:layout_height="@dimen/dp_38"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/dp_28"
+                    android:layout_marginLeft="@dimen/dp_27"
                     android:layout_toRightOf="@id/tv_sex"
-                    android:background="@mipmap/bg_et_mine_details"
-                    android:enabled="false"
-                    android:focusable="true"
-                    android:hint="@string/pop_mine_baby_sex"
-                    android:maxLength="12"
-                    android:maxLines="1"
-                    android:paddingLeft="@dimen/dp_15"
-                    android:text="男"
-                    android:textColor="@color/color_5B5659"
-                    android:textSize="@dimen/sp_16" />
+                    android:background="@mipmap/icon_male"
+                    android:focusable="true" />
 
+                <net.frontdo.funnylearn.ui.widget.ZoomableImageView
+                    android:id="@+id/iv_female"
+                    android:layout_width="@dimen/dp_70"
+                    android:layout_height="@dimen/dp_38"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp_6"
+                    android:layout_toRightOf="@id/iv_male"
+                    android:background="@mipmap/icon_female"
+                    android:focusable="true" />
             </RelativeLayout>
         </LinearLayout>
 

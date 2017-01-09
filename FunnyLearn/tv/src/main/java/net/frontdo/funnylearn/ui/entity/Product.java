@@ -102,7 +102,7 @@ public class Product implements Serializable {
     private String productCategory;                                 // 分类ID: "3,4"；该产品即属于分类ID：3；也属于分类ID：4
     private String productCategoryTag;                              // 分类名称："AR;启蒙"；该产品即属于分类：AR；也属于分类ID：启蒙
     private String productDeveloper;
-    private String productSize;
+    private String productSize;                                     // 产品大小MB
     private float productScore;
     private int productCategoryId;
     private String productAppQRCode;                                // 产品QRCode

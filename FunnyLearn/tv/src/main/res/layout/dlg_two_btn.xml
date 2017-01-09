@@ -24,7 +24,7 @@
         android:textColor="@color/color_6B6862"
         android:textSize="@dimen/sp_17" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/dp_20"
@@ -48,9 +48,10 @@
             android:id="@+id/btn_ok"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_30"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_below="@id/btn_cancel"
+            android:layout_marginTop="@dimen/dp_15"
             android:background="@mipmap/icon_boot_app"
             android:focusable="true" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

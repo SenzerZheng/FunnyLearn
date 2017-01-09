@@ -57,7 +57,10 @@ public class AppContext extends MultiDexApplication {
     private int ageScope = AppConstants.AGE_ARE_ALL;
 
     // 用户最近访问记录
-    private List<Product> mProducts;
+    private List<Product> mPSees;
+
+    // 用户最近访问记录
+    private List<Product> mPApks;
 
     private boolean initLoc; //是否初始定位
 
@@ -268,10 +271,10 @@ public class AppContext extends MultiDexApplication {
      * @return
      */
     public List<Product> gainSees() {
-        if (null == mProducts) {
-            mProducts = AppConfig.getConfig(this).getSees();
+        if (null == mPSees) {
+            mPSees = AppConfig.getConfig(this).getSees();
         }
-        return mProducts;
+        return mPSees;
     }
 
     /**
@@ -279,15 +282,42 @@ public class AppContext extends MultiDexApplication {
      */
     public void saveSees(List<Product> products) {
         if (null == products) {
-            FrontdoLogger.getLogger().e(TAG, "[ " + TAG + " - saveUserInfo] userInfo is null!");
+            FrontdoLogger.getLogger().e(TAG, "[ " + TAG + " - saveSees] products is null!");
             return;
         }
 
-        mProducts = products;
+        mPSees = products;
         //mMobile = userInfo.getUserId();
 
         // save to sharePreference
         AppConfig.getConfig(this).saveSees(products);
+    }
+
+    /**
+     * 获取硬盘缓存，用户下载APK记录
+     *
+     * @return
+     */
+    public List<Product> gainDLogs() {
+        if (null == mPApks) {
+            mPApks = AppConfig.getConfig(this).getDLogs();
+        }
+        return mPApks;
+    }
+
+    /**
+     * 保存硬盘缓存，用户下载APK记录
+     */
+    public void saveDLogs(List<Product> products) {
+        if (null == products) {
+            FrontdoLogger.getLogger().e(TAG, "[ " + TAG + " - saveDLogs] products is null!");
+            return;
+        }
+
+        mPApks = products;
+
+        // save to sharePreference
+        AppConfig.getConfig(this).saveDLogs(products);
     }
 
     /**

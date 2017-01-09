@@ -19,6 +19,7 @@ import net.frontdo.funnylearn.R;
 import net.frontdo.funnylearn.api.ParamsHelper;
 import net.frontdo.funnylearn.app.AppContext;
 import net.frontdo.funnylearn.base.BaseHoldBackActivity;
+import net.frontdo.funnylearn.common.AppManager;
 import net.frontdo.funnylearn.common.CameraUtils;
 import net.frontdo.funnylearn.common.DateUtil;
 import net.frontdo.funnylearn.common.MyUpdateNotification;
@@ -273,8 +274,11 @@ public class DetailsActivity extends BaseHoldBackActivity implements
             case R.id.rl_play_video:
 //                toast("播放");
 //                String url = "http://218.200.69.66:8302/upload/Media/20150327/43bfda1b-7280-469c-a83b-82fa311c79d7.m4v";
+//                String url = "https://v.qq.com/iframe/player.html?vid=y03627t7g9u&tiny=0&auto=0";
                 String url = product.getProductPlayAddr();
-                VideoActivity.boot(this, url);
+//                VideoActivity.boot(this, url);
+//                ActFlashPlay.boot(this, url);
+                SWFPlayerActivity.boot(this, url);
                 break;
 
             case R.id.iv_back:
@@ -301,10 +305,21 @@ public class DetailsActivity extends BaseHoldBackActivity implements
 
             case R.id.iv_install_status:
 //                toast("安装。。。");
+
+                // 已安装，直接启动
+                if (AppManager.isAppInstalled(this, product.getProductPackName())) {
+
+                    AppManager.bootApp(this, product.getProductPackName());
+                    return;
+                }
+
+                // 未安装，下载安装启动
                 String mobile = AppContext.getInstance().getMobile();
                 if (StringUtil.checkEmpty(mobile)) {
-                    LoginActivity.boot(this);
-                    return;
+//                    LoginActivity.boot(this);
+//                    return;
+
+                    mobile = "";
                 }
 
 //                String apkDownUrl = "http://app.znds.com/down/20161117/douyu_1.1.6_dangbei.apk";
@@ -314,9 +329,12 @@ public class DetailsActivity extends BaseHoldBackActivity implements
                 downloadApk(apkDownUrl, ProgressDialogUtil.getProgressDialog());
 //                downloadApk(apkDownUrl);
 
+                // ago version: server
                 int productId = product.getId();
                 ReqOperFavOrApp reqApp = new ReqOperFavOrApp(mobile, productId);
                 operFavOrApp(TYPE_APP, MY_APP_ADD, reqApp);
+                // now version: local
+                add2DLogs(product);
                 break;
 
             case R.id.cb_fav:                               // 添加或取消收藏
@@ -482,10 +500,17 @@ public class DetailsActivity extends BaseHoldBackActivity implements
             ivLatest.setVisibility(View.GONE);
         }
 
-        // show the camera
+        // show the goods
         if (Product.P_TYPE_APP == product.getType()) {      // APP Good
             rlApp.setVisibility(View.VISIBLE);
             rlVideo.setVisibility(View.GONE);
+
+            // set the visibilisty of the install status
+            if (Product.P_ENABLE == product.getProductAppEnabled()) {
+                ivInstallStatus.setVisibility(View.VISIBLE);
+            } else {
+                ivInstallStatus.setVisibility(View.INVISIBLE);
+            }
 
             // texts
             tvClass.setText(tempPro.getProductCategoryTag());
@@ -501,18 +526,26 @@ public class DetailsActivity extends BaseHoldBackActivity implements
             }
             tvVer.setText(tempPro.getProductApkVersion());
 
-            if (!CameraUtils.hasFrontFacingCamera()) {      // do not exist camera
-                ivIsHasCamera.setVisibility(View.VISIBLE);
-                ivIsHasCamera.setImageResource(R.mipmap.details_not_camera);
+            if (AppManager.isAppInstalled(this, tempPro.getProductPackName())) {    // 已安装
 
-                ivInstallStatus.setImageResource(R.mipmap.details_install_no);
-                ivInstallStatus.setEnabled(false);
-            } else {                                        // exist camera
+                ivInstallStatus.setImageResource(R.mipmap.details_install_boot);
+                ivInstallStatus.setEnabled(true);
+            } else {                                                                // 未安装
+
+                if (!CameraUtils.hasFrontFacingCamera()) {      // do not exist camera
+                    ivIsHasCamera.setVisibility(View.VISIBLE);
+                    ivIsHasCamera.setImageResource(R.mipmap.details_not_camera);
+
+                    ivInstallStatus.setImageResource(R.mipmap.details_install_no);
+                    ivInstallStatus.setEnabled(false);
+                } else {                                        // exist camera
+                    // TODO: 增加有摄像头，提示。等客户给图
 //                ivIsHasCamera.setVisibility(View.VISIBLE);
 //                ivIsHasCamera.setImageResource(R.mipmap.details_has_camera);
 
-                ivInstallStatus.setImageResource(R.mipmap.details_install_ok);
-                ivInstallStatus.setEnabled(true);
+                    ivInstallStatus.setImageResource(R.mipmap.details_install_ok);
+                    ivInstallStatus.setEnabled(true);
+                }
             }
         } else {                                            // AR Good
             rlApp.setVisibility(View.GONE);
@@ -613,6 +646,37 @@ public class DetailsActivity extends BaseHoldBackActivity implements
         tempPro.setProductModifyDate(DateUtil.getENDate());
         products.add(0, tempPro);
         AppContext.getInstance().saveSees(products);
+    }
+
+    /**
+     * add to the local dlogs
+     *
+     * @param tempPro
+     */
+    private void add2DLogs(Product tempPro) {
+        if (null == tempPro) {
+            return;
+        }
+
+        List<Product> products = AppContext.getInstance().gainDLogs();
+        if (null == products) {
+            products = new ArrayList<>();
+        }
+
+        // remove the duplicate data
+        List<Product> rmObjs = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getId() == tempPro.getId()) {
+                rmObjs.add(product);
+            }
+        }
+
+        for (Product product : rmObjs) {
+            products.remove(product);
+        }
+
+        products.add(0, tempPro);
+        AppContext.getInstance().saveDLogs(products);
     }
 
     // ################### Network Request Start ###################

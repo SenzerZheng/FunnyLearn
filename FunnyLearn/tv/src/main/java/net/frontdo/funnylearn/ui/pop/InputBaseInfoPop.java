@@ -14,6 +14,7 @@ import android.widget.TextView;
 import net.frontdo.funnylearn.R;
 import net.frontdo.funnylearn.app.AppContext;
 import net.frontdo.funnylearn.common.DatePickerDialogUtil;
+import net.frontdo.funnylearn.common.DateUtil;
 import net.frontdo.funnylearn.common.StringUtil;
 import net.frontdo.funnylearn.common.ToastHelper;
 import net.frontdo.funnylearn.ui.entity.UserInfo;
@@ -99,16 +100,11 @@ public class InputBaseInfoPop {
             @Override
             public void onClick(View v) {
 
-                /**
-                 *
-                 *  TODO: 搞搞日起选择控件，选中效果
-                 *
-                 *
-                 */
                 DatePickerDialogUtil.showCur(mContext, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        tvBirthday.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+
+                        tvBirthday.setText(DateUtil.getSelectedDate(year, month, dayOfMonth));
                     }
                 });
             }

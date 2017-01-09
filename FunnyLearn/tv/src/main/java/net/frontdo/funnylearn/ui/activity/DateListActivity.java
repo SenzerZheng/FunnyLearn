@@ -125,6 +125,10 @@ public class DateListActivity extends BaseHoldBackActivity implements
             return;
         }
 
+        updateViewLine();
+    }
+
+    private void updateViewLine() {
         // set the line height
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) viewLine.getLayoutParams();
 
@@ -168,10 +172,12 @@ public class DateListActivity extends BaseHoldBackActivity implements
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                if (manager.findFirstVisibleItemPosition() == 0
-                        && rvList.getChildAt(0).getTop() == 0) {
+                if (rvList.getChildAt(0).getTop() == 0) {       // restore the raw postion
+
                     lineTranslationY = 0;
-                } else {
+                    rvList.smoothScrollToPosition(0);
+                } else {                                        // translate y about line
+
                     if (dy > 0) {
                         if (lineTranslationY > -25) {
                             lineTranslationY -= 5;
@@ -180,7 +186,8 @@ public class DateListActivity extends BaseHoldBackActivity implements
                 }
                 viewLine.setTranslationY(lineTranslationY);
 //                FrontdoLogger.getLogger().e(TAG, "[ " + TAG + " - onScrolled] dx " + dx + ", dy " + dy
-//                        + ", ty " + rvList.getChildAt(0).getTop());
+//                        + ", getTop: " + rvList.getChildAt(0).getTop() + "，tY：" + lineTranslationY
+//                        + ", fVP: " + manager.findFirstVisibleItemPosition());
             }
         });
     }
@@ -394,7 +401,12 @@ public class DateListActivity extends BaseHoldBackActivity implements
                         }
 
                         if (null == products || products.isEmpty()) {
+
                             ivEmpty.setVisibility(View.VISIBLE);
+                            viewLine.setVisibility(View.GONE);
+                        } else {
+
+                            updateViewLine();
                         }
                         mGoodsAdapter.notifyDataSetChanged();
                     }

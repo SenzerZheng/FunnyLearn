@@ -27,6 +27,7 @@ import net.frontdo.funnylearn.ui.widget.ProgressDialogUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import butterknife.Bind;
@@ -35,9 +36,6 @@ import retrofit.Response;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
-import static net.frontdo.funnylearn.api.ParamsHelper.MY_APP_CANCEL;
-import static net.frontdo.funnylearn.api.ParamsHelper.TYPE_APP;
 
 /**
  * ProjectName: AppsFragment
@@ -82,13 +80,40 @@ public class AppsFragment extends BaseFragment implements
     public void onResume() {
         super.onResume();
 
-        String mobile = AppContext.getInstance().getMobile();
-        if (!StringUtil.checkEmpty(mobile)) {
-            reqApps(TYPE_APP, mobile);
-        } else {
+        // ago version: server
+//        String mobile = AppContext.getInstance().getMobile();
+//        if (!StringUtil.checkEmpty(mobile)) {
+//            reqApps(TYPE_APP, mobile);
+//        } else {
+//
+////            toast(R.string.apps_unlogin_no_data);
+//        }
 
-//            toast(R.string.apps_unlogin_no_data);
+        // now version: local
+        initDApkData();
+    }
+
+    /**
+     * 从本地获取下载的Apk记录，并且显示
+     */
+    private void initDApkData() {
+        List<Product> dApkLogs = AppContext.getInstance().gainDLogs();
+        if (null == dApkLogs) {
+            fillData(dApkLogs);
+            return;
         }
+
+        // filter the invalidate data
+        Iterator<Product> iterator = dApkLogs.iterator();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (!AppManager.isAppInstalled(getActivity(), product.getProductPackName())) {
+                iterator.remove();
+            }
+        }
+
+        AppContext.getInstance().saveDLogs(dApkLogs);
+        fillData(dApkLogs);
     }
 
     private void initView() {
@@ -111,19 +136,7 @@ public class AppsFragment extends BaseFragment implements
             return;
         }
 
-        // deal the notification
-        boolean isShowUpdate = false;
-        String verName = AppManager.getAppVerName(getActivity(), product.getProductPackName());
-        if (verName.compareTo(product.getProductApkVersion()) < 0) {
-            isShowUpdate = true;
-        }
-        NotificationUtils.showTwoBtnDlg(getActivity(),
-                getString(R.string.dlg_app_update_title),
-                getString(R.string.dlg_app_update_tips),
-                "",
-                "",
-                isShowUpdate,
-                new UpdateOrBootDlg(product));
+        reqDetails(product.getId());
     }
 
     @Override
@@ -139,12 +152,26 @@ public class AppsFragment extends BaseFragment implements
         // uninstall apk
 //        AppManager.uninstallApk(getActivity(), TEST_APP);
         AppManager.uninstallApk(getActivity(), product.getProductPackName());
-        // remove app from server
-        ReqOperFavOrApp reqOperFavOrApp = new ReqOperFavOrApp(mobile, product.getId());
-        uninstallApp(TYPE_APP, MY_APP_CANCEL, reqOperFavOrApp);
+        // ago version: remove app from server
+//        ReqOperFavOrApp reqOperFavOrApp = new ReqOperFavOrApp(mobile, product.getId());
+//        uninstallApp(TYPE_APP, MY_APP_CANCEL, reqOperFavOrApp);
+    }
+
+    private void fillData(List<Product> products) {
+        if (null != products && !products.isEmpty()) {
+
+            ivEmpty.setVisibility(View.GONE);
+            mDatasource = products;
+        } else {
+
+            ivEmpty.setVisibility(View.VISIBLE);
+            products = new ArrayList<>();
+        }
+        adapter.setDataSource(products, false);
     }
 
     // ################### Network Request Start ###################
+    @Deprecated
     private void reqApps(String type, String mobile) {
         showProgressDlg(null, true);
 
@@ -155,16 +182,8 @@ public class AppsFragment extends BaseFragment implements
                     @Override
                     public void onSuccess(String code, List<Product> products) {
                         dismissProgressDlg();
-                        if (null != products && !products.isEmpty()) {
 
-                            ivEmpty.setVisibility(View.GONE);
-                            mDatasource = products;
-                        } else {
-
-                            ivEmpty.setVisibility(View.VISIBLE);
-                            products = new ArrayList<>();
-                        }
-                        adapter.setDataSource(products, false);
+                        fillData(products);
                     }
 
                     @Override
@@ -188,6 +207,57 @@ public class AppsFragment extends BaseFragment implements
                         dismissProgressDlg();
 
                         FrontdoLogger.getLogger().i(TAG, "[ " + TAG + " - uninstallApp] remove app suc!");
+                    }
+
+                    @Override
+                    public void onFailure(String code, String message) {
+                        dismissProgressDlg();
+                        toast(message);
+                    }
+                });
+        addSubscription(subscription);
+    }
+
+    private void reqDetails(int productId) {
+        showProgressDlg(null, true);
+
+        Subscription subscription = apiService.getDetails(productId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new FrontdoSubcriber<Response, Product>() {
+                    @Override
+                    public void onSuccess(String code, Product tempPro) {
+                        dismissProgressDlg();
+                        if (null == tempPro) {
+                            return;
+                        }
+
+                        // deal the notification
+                        String verName = AppManager.getAppVerName(getActivity(), tempPro.getProductPackName());
+                        if (verName.compareTo(tempPro.getProductApkVersion()) < 0) {        // update
+
+                            NotificationUtils.showTwoBtnDlg(getActivity(),
+                                    getString(R.string.dlg_app_update_title),
+                                    getString(R.string.dlg_app_update_tips),
+                                    "",
+                                    "",
+                                    true,
+                                    new UpdateOrBootDlg(tempPro));
+                        } else {                                                            // boot
+
+                            AppManager.bootApp(getActivity(), tempPro.getProductPackName());
+                        }
+
+                        // update the local data
+                        List<Product> dApkLogs = AppContext.getInstance().gainDLogs();
+                        int index = 0;
+                        for (Product product : dApkLogs) {
+                            if (product.getId() == tempPro.getId()) {
+                                dApkLogs.set(index, tempPro);
+                            }
+
+                            index++;
+                        }
                     }
 
                     @Override
@@ -223,6 +293,7 @@ public class AppsFragment extends BaseFragment implements
      * @param apkUrl
      * @unsed
      */
+
     private void downloadApk(final String apkUrl) {
         new Thread() {
 

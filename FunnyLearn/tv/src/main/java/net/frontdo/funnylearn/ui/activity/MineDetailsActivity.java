@@ -1,20 +1,23 @@
 package net.frontdo.funnylearn.ui.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import net.frontdo.funnylearn.R;
-import net.frontdo.funnylearn.app.AppConstants;
 import net.frontdo.funnylearn.app.AppContext;
 import net.frontdo.funnylearn.base.BaseHoldBackActivity;
-import net.frontdo.funnylearn.common.SoftKeyboardManager;
+import net.frontdo.funnylearn.common.DatePickerDialogUtil;
+import net.frontdo.funnylearn.common.DateUtil;
 import net.frontdo.funnylearn.net.FrontdoSubcriber;
 import net.frontdo.funnylearn.net.bean.ReqUpdateInfo;
 import net.frontdo.funnylearn.ui.entity.UserInfo;
+import net.frontdo.funnylearn.ui.widget.ZoomableImageView;
+import net.frontdo.funnylearn.ui.widget.ZoomableTextView;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -24,16 +27,22 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static net.frontdo.funnylearn.api.ParamsHelper.USER_INFO_EDIT;
+import static net.frontdo.funnylearn.ui.entity.UserInfo.SEX_UNKNOWN;
 
 public class MineDetailsActivity extends BaseHoldBackActivity {
     private static final String TAG = MineDetailsActivity.class.getSimpleName();
 
     @Bind(R.id.et_mobile)
     TextView etMobile;
-    @Bind(R.id.et_birthday)
-    EditText etBirthday;
-    @Bind(R.id.et_sex)
-    EditText etSex;
+    @Bind(R.id.tv_sel_birth_date)
+    ZoomableTextView tvSelBirthDate;
+    @Bind(R.id.iv_male)
+    ZoomableImageView ivMale;
+    @Bind(R.id.iv_female)
+    ZoomableImageView ivFemale;
+
+    // 1（男），0（女），-1（未知）
+    private int sex = SEX_UNKNOWN;
 
     @Override
     protected int onBindLayout() {
@@ -52,18 +61,20 @@ public class MineDetailsActivity extends BaseHoldBackActivity {
         if (null != userInfo) {
             etMobile.setText(userInfo.getMemberMobile());
 
-            etBirthday.setText(userInfo.getMemberBirthday());
-            String sexTxt = "";
+            tvSelBirthDate.setText(userInfo.getMemberBirthday());
             if (UserInfo.SEX_MALE == userInfo.getMemberBabyGender()) {
-                sexTxt = AppConstants.SEX_MALE_TXT;
+
+                ivMale.setBackgroundResource(R.mipmap.icon_male);
+                ivFemale.setBackgroundResource(R.mipmap.mine_details_woman_unselected);
             } else {
-                sexTxt = AppConstants.SEX_FEMALE_TXT;
+
+                ivMale.setBackgroundResource(R.mipmap.mine_details_man_unselected);
+                ivFemale.setBackgroundResource(R.mipmap.icon_female);
             }
-            etSex.setText(sexTxt);
         }
     }
 
-    @OnClick({R.id.iv_back, R.id.iv_edit, R.id.iv_logout})
+    @OnClick({R.id.iv_back, R.id.tv_sel_birth_date, R.id.iv_edit, R.id.iv_logout, R.id.iv_male, R.id.iv_female})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:                          // 返回
@@ -71,36 +82,25 @@ public class MineDetailsActivity extends BaseHoldBackActivity {
                 finish();
                 break;
 
-            case R.id.iv_edit:                          // 编辑
+            case R.id.tv_sel_birth_date:                // 选择出生日期
 
-                if (!etBirthday.isEnabled()) {      // 开始编辑
-                    etBirthday.setEnabled(true);
-                    etSex.setEnabled(true);
+                DatePickerDialogUtil.showCur(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                    etBirthday.requestFocus();
-                    if (!SoftKeyboardManager.isShowing(this, etBirthday.getWindowToken())) {
-                        SoftKeyboardManager.show(this, etBirthday);
+                        tvSelBirthDate.setText(DateUtil.getSelectedDate(year, month, dayOfMonth));
                     }
-                } else {
-                    etBirthday.setEnabled(false);
-                    etSex.setEnabled(false);
-                    if (SoftKeyboardManager.isShowing(this, etBirthday.getWindowToken())) {
-                        SoftKeyboardManager.hide(this, etBirthday.getWindowToken());
-                    }
+                });
+                break;
 
-                    ReqUpdateInfo reqEditInfo = new ReqUpdateInfo();
-                    reqEditInfo.setMemberMobile(AppContext.getInstance().getMobile());
-                    reqEditInfo.setMemberBirthday(etBirthday.getText().toString().trim());
+            case R.id.iv_edit:                          // 编辑，进行保存
 
-                    String sexTxt = etSex.getText().toString().trim();
-                    if (AppConstants.SEX_MALE_TXT.equals(sexTxt)) {
-                        reqEditInfo.setMemberBabyGender(UserInfo.SEX_MALE);
-                    } else {
-                        reqEditInfo.setMemberBabyGender(UserInfo.SEX_FEMALE);
-                    }
+                ReqUpdateInfo reqEditInfo = new ReqUpdateInfo();
+                reqEditInfo.setMemberMobile(AppContext.getInstance().getMobile());
+                reqEditInfo.setMemberBirthday(tvSelBirthDate.getText().toString().trim());
+                reqEditInfo.setMemberBabyGender(sex);
 
-                    editUserInfo(reqEditInfo);
-                }
+                editUserInfo(reqEditInfo);
                 break;
 
             case R.id.iv_logout:                        // 注销
@@ -115,6 +115,25 @@ public class MineDetailsActivity extends BaseHoldBackActivity {
                 // cache
                 AppContext.getInstance().saveUserInfo(cacheUInfo);
                 finish();
+                break;
+
+            case R.id.iv_male:                          // 选中男
+                sex = UserInfo.SEX_MALE;
+                toast("男");
+
+                ivMale.setBackgroundResource(R.mipmap.icon_male);
+                ivFemale.setBackgroundResource(R.mipmap.mine_details_woman_unselected);
+                break;
+
+            case R.id.iv_female:                        // 选中女
+                sex = UserInfo.SEX_FEMALE;
+                toast("女");
+
+                ivMale.setBackgroundResource(R.mipmap.mine_details_man_unselected);
+                ivFemale.setBackgroundResource(R.mipmap.icon_female);
+                break;
+
+            default:
                 break;
         }
     }

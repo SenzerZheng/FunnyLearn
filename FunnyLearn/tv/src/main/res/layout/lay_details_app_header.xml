@@ -36,7 +36,7 @@
     <RelativeLayout
         android:id="@+id/rl_title"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp_60"
+        android:layout_height="@dimen/dp_48"
         android:layout_toRightOf="@id/rl_cover"
         android:orientation="horizontal">
 
@@ -47,12 +47,12 @@
             android:layout_centerVertical="true"
             android:text="MIAO咪噢"
             android:textColor="@color/color_626060"
-            android:textSize="@dimen/sp_20" />
+            android:textSize="@dimen/sp_24" />
 
         <net.frontdo.funnylearn.ui.widget.ZoomableCheckBox
             android:id="@+id/cb_fav"
-            android:layout_width="@dimen/dp_80"
-            android:layout_height="@dimen/dp_30"
+            android:layout_width="@dimen/dp_65"
+            android:layout_height="@dimen/dp_23"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_15"
             android:layout_toRightOf="@id/tv_title"
@@ -268,7 +268,7 @@
             <net.frontdo.funnylearn.ui.widget.ZoomableImageView
                 android:id="@+id/iv_install_status"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_55"
+                android:layout_height="@dimen/dp_48"
                 android:focusable="true"
                 android:src="@mipmap/details_install_ok" />
 

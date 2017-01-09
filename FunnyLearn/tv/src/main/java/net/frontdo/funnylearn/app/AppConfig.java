@@ -111,4 +111,35 @@ public class AppConfig {
         SharedPrefsUtils sharedPrefs = new SharedPrefsUtils(context, SharedPrefsUtils.SP_FILE_NAME_SEES);
         sharedPrefs.clearSharedPreferences();
     }
+
+    /**
+     * 保存用户下载APK记录文件名
+     *
+     * @param products
+     */
+    public void saveDLogs(List<Product> products) {
+        if (products != null) {
+            SharedPrefsUtils sharedPrefs = new SharedPrefsUtils(context, SharedPrefsUtils.SP_FILE_NAME_DOWNED_LOGS);
+            sharedPrefs.setObject(SharedPrefsUtils.SP_KEY_DOWNED_LOGS, products);
+        }
+    }
+
+    /**
+     * 获取用户下载APK记录文件名
+     *
+     * @return
+     */
+    public List<Product> getDLogs() {
+        SharedPrefsUtils sharedPrefs = new SharedPrefsUtils(context, SharedPrefsUtils.SP_FILE_NAME_DOWNED_LOGS);
+        List<Product> products = sharedPrefs.getObject(SharedPrefsUtils.SP_KEY_DOWNED_LOGS, List.class);
+        return products;
+    }
+
+    /**
+     * 清除用户下载APK记录文件名
+     */
+    public void clearDLogs() {
+        SharedPrefsUtils sharedPrefs = new SharedPrefsUtils(context, SharedPrefsUtils.SP_FILE_NAME_DOWNED_LOGS);
+        sharedPrefs.clearSharedPreferences();
+    }
 }

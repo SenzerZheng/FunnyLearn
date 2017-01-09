@@ -146,4 +146,14 @@ public class DateUtil {
         SimpleDateFormat format = new SimpleDateFormat(SDF_01);
         return format.format(new Date());
     }
+
+    public static String getSelectedDate(int year, int month, int dayOfMonth) {
+        final String FILL_CHAR = "0";
+        final int TWO_NUM = 10;
+
+        int realMonth = month + 1;
+        String strMonth = realMonth < TWO_NUM ? FILL_CHAR + realMonth : String.valueOf(realMonth);
+        String strDay = dayOfMonth < TWO_NUM ? FILL_CHAR + dayOfMonth : String.valueOf(dayOfMonth);
+        return year + "-" + strMonth + "-" + strDay;
+    }
 }

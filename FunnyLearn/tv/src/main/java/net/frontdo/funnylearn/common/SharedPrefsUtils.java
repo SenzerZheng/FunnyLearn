@@ -23,6 +23,9 @@ public class SharedPrefsUtils {
     public static final String SP_FILE_NAME_SEES = "frondto_sees";              // 用户最近访问记录文件名
     public static final String SP_KEY_USER_SEES = "userSees";                   // 用户最近访问记录Key
 
+    public static final String SP_FILE_NAME_DOWNED_LOGS = "downloasd_logs";     // 用户下载APK记录文件名
+    public static final String SP_KEY_DOWNED_LOGS = "downloasdLogs";            // 用户下载APK记录Key
+
     private Context context;
     private String name;
 

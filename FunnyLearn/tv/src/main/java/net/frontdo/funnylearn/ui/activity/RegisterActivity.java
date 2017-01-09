@@ -15,6 +15,7 @@ import net.frontdo.funnylearn.app.AppContext;
 import net.frontdo.funnylearn.base.BaseHoldBackActivity;
 import net.frontdo.funnylearn.common.ActivityStack;
 import net.frontdo.funnylearn.common.DatePickerDialogUtil;
+import net.frontdo.funnylearn.common.DateUtil;
 import net.frontdo.funnylearn.common.StringUtil;
 import net.frontdo.funnylearn.net.FrontdoSubcriber;
 import net.frontdo.funnylearn.net.bean.ReqLogin;
@@ -159,7 +160,8 @@ public class RegisterActivity extends BaseHoldBackActivity {
                 DatePickerDialogUtil.showCur(RegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        tvSelBirthDate.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+
+                        tvSelBirthDate.setText(DateUtil.getSelectedDate(year, month, dayOfMonth));
                     }
                 });
                 break;

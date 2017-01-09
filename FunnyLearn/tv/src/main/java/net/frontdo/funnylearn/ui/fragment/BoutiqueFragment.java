@@ -130,7 +130,7 @@ public class BoutiqueFragment extends BaseFragment implements SelAgePop.OnAgeAre
                 }
 
 //                toast("cover_01");
-                DetailsActivity.boot(getActivity(), layouts.get(0).getId());
+                DetailsActivity.boot(getActivity(), layouts.get(0).getLayoutValue());
                 break;
 
             case R.id.rl_cover_02:
@@ -140,7 +140,7 @@ public class BoutiqueFragment extends BaseFragment implements SelAgePop.OnAgeAre
                 }
 
 //                toast("cover_02");
-                DetailsActivity.boot(getActivity(), layouts.get(1).getId());
+                DetailsActivity.boot(getActivity(), layouts.get(1).getLayoutValue());
                 break;
 
             case R.id.rl_cover_03:
@@ -150,7 +150,7 @@ public class BoutiqueFragment extends BaseFragment implements SelAgePop.OnAgeAre
                 }
 
 //                toast("cover_03");
-                DetailsActivity.boot(getActivity(), layouts.get(2).getId());
+                DetailsActivity.boot(getActivity(), layouts.get(2).getLayoutValue());
                 break;
 
             case R.id.rl_cover_04:
@@ -160,7 +160,7 @@ public class BoutiqueFragment extends BaseFragment implements SelAgePop.OnAgeAre
                 }
 
 //                toast("cover_04");
-                DetailsActivity.boot(getActivity(), layouts.get(3).getId());
+                DetailsActivity.boot(getActivity(), layouts.get(3).getLayoutValue());
                 break;
 
             default:
