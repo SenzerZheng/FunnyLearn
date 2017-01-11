@@ -1,5 +1,6 @@
 package net.frontdo.funnylearn.api;
 
+import net.frontdo.funnylearn.net.bean.ReqAddDLogs2Server;
 import net.frontdo.funnylearn.net.bean.ReqLogin;
 import net.frontdo.funnylearn.net.bean.ReqOperFavOrApp;
 import net.frontdo.funnylearn.net.bean.ReqRegister;
@@ -157,4 +158,13 @@ public interface FrontdoApiService {
     @GET(HttpUrls.PRODUCT_DETAILS_FAV_STATE)
     Observable<Response<GetFavState>> getDetailsFavStatus(
             @Path("mobile") String mobile, @Path("id") int productId);
+
+    /**
+     * Download log: 新增下载日志
+     *
+     * @param reqOperFavOrApp
+     * @return
+     */
+    @POST(HttpUrls.ADD_DLOGS_TO_SERVER)
+    Observable<Response<String>> addDLogs2Server(@Body ReqAddDLogs2Server reqOperFavOrApp);
 }

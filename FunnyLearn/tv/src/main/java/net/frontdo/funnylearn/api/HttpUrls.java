@@ -85,4 +85,7 @@ public class HttpUrls {
 
     /** 查询产品详情，收藏状态 id = 产品ID， mobile = 手机号 */
     public static final String PRODUCT_DETAILS_FAV_STATE = "collect/{mobile}/{id}";
+
+    /** Download log: 新增下载日志 */
+    public static final String ADD_DLOGS_TO_SERVER = "logs/save";
 }

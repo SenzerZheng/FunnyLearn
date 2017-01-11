@@ -29,6 +29,7 @@ import net.frontdo.funnylearn.common.StringUtil;
 import net.frontdo.funnylearn.common.VersionUtils;
 import net.frontdo.funnylearn.logger.FrontdoLogger;
 import net.frontdo.funnylearn.net.FrontdoSubcriber;
+import net.frontdo.funnylearn.net.bean.ReqAddDLogs2Server;
 import net.frontdo.funnylearn.net.bean.ReqOperFavOrApp;
 import net.frontdo.funnylearn.ui.adapter.DetailsAppImgsRVAdapter;
 import net.frontdo.funnylearn.ui.adapter.DetailsVideoRVAdapter;
@@ -52,10 +53,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static net.frontdo.funnylearn.api.ParamsHelper.MY_APP_ADD;
 import static net.frontdo.funnylearn.api.ParamsHelper.MY_FAV_ADD;
 import static net.frontdo.funnylearn.api.ParamsHelper.MY_FAV_CANCEL;
-import static net.frontdo.funnylearn.api.ParamsHelper.TYPE_APP;
 import static net.frontdo.funnylearn.api.ParamsHelper.TYPE_FAV;
 import static net.frontdo.funnylearn.app.AppConstants.IKEY_PRODUCT_ID;
 
@@ -328,9 +327,12 @@ public class DetailsActivity extends BaseHoldBackActivity implements
                     mobile = "";
                 }
 
-                int productId = product.getId();
-                ReqOperFavOrApp reqApp = new ReqOperFavOrApp(mobile, productId);
-                operFavOrApp(TYPE_APP, MY_APP_ADD, reqApp);
+                // add the download log to the server
+                String date = DateUtil.getENDate();
+                String name = product.getName();
+                ReqAddDLogs2Server reqAddDLogs2Server = new ReqAddDLogs2Server(
+                        mobile, date, name, 0);
+                addDLogs2Server(reqAddDLogs2Server);
                 // add to the local sp and display the records at AppsFragment
                 add2DLogs(product);
                 break;
@@ -774,6 +776,32 @@ public class DetailsActivity extends BaseHoldBackActivity implements
 
                             FrontdoLogger.getLogger().i(TAG, "[ " + TAG + " - operFavOrApp] add app suc!");
                         }
+                    }
+
+                    @Override
+                    public void onFailure(String code, String message) {
+                        dismissProgressDlg();
+                        toast(message);
+
+                        cbFav.setChecked(isFavChecked);
+                    }
+                });
+        addSubscription(subscription);
+    }
+
+    private void addDLogs2Server(ReqAddDLogs2Server reqAddDLogs2Server) {
+        showProgressDlg(null, true);
+
+        Subscription subscription = apiService.addDLogs2Server(reqAddDLogs2Server)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new FrontdoSubcriber<Response, String>() {
+                    @Override
+                    public void onSuccess(String code, String data) {
+                        dismissProgressDlg();
+
+                        // 操作应用功能（点击下载，添加后台成功）
+                        FrontdoLogger.getLogger().i(TAG, "[ " + TAG + " - addDLogs2Server] add dlogs suc!");
                     }
 
                     @Override
