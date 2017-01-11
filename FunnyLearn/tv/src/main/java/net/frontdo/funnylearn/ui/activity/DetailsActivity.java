@@ -276,9 +276,7 @@ public class DetailsActivity extends BaseHoldBackActivity implements
 //                String url = "http://218.200.69.66:8302/upload/Media/20150327/43bfda1b-7280-469c-a83b-82fa311c79d7.m4v";
 //                String url = "https://v.qq.com/iframe/player.html?vid=y03627t7g9u&tiny=0&auto=0";
                 String url = product.getProductPlayAddr();
-//                VideoActivity.boot(this, url);
-//                ActFlashPlay.boot(this, url);
-                SWFPlayerActivity.boot(this, url);
+                playVideo(url);
                 break;
 
             case R.id.iv_back:
@@ -313,7 +311,15 @@ public class DetailsActivity extends BaseHoldBackActivity implements
                     return;
                 }
 
-                // 未安装，下载安装启动
+                // 未安装，下载安装，到应用列表启动
+//                String apkDownUrl = "http://app.znds.com/down/20161117/douyu_1.1.6_dangbei.apk";
+                String apkDownUrl = product.getProductApkDownUrl();
+                /** 下载最新版本Apk，打开手动进行安装。不修改底层框架（Framework）无法使用静默安装。 */
+                ProgressDialogUtil.openHorizontalProgressDialog(DetailsActivity.this, "正在下载更新...");
+                downloadApk(apkDownUrl, ProgressDialogUtil.getProgressDialog());
+//                downloadApk(apkDownUrl);
+
+                // record logs to the server
                 String mobile = AppContext.getInstance().getMobile();
                 if (StringUtil.checkEmpty(mobile)) {
 //                    LoginActivity.boot(this);
@@ -322,18 +328,10 @@ public class DetailsActivity extends BaseHoldBackActivity implements
                     mobile = "";
                 }
 
-//                String apkDownUrl = "http://app.znds.com/down/20161117/douyu_1.1.6_dangbei.apk";
-                String apkDownUrl = product.getProductApkDownUrl();
-                /** 下载最新版本Apk，打开手动进行安装。不修改底层框架（Framework）无法使用静默安装。 */
-                ProgressDialogUtil.openHorizontalProgressDialog(DetailsActivity.this, "正在下载更新...");
-                downloadApk(apkDownUrl, ProgressDialogUtil.getProgressDialog());
-//                downloadApk(apkDownUrl);
-
-                // ago version: server
                 int productId = product.getId();
                 ReqOperFavOrApp reqApp = new ReqOperFavOrApp(mobile, productId);
                 operFavOrApp(TYPE_APP, MY_APP_ADD, reqApp);
-                // now version: local
+                // add to the local sp and display the records at AppsFragment
                 add2DLogs(product);
                 break;
 
@@ -357,6 +355,17 @@ public class DetailsActivity extends BaseHoldBackActivity implements
             default:
                 break;
         }
+    }
+
+    /**
+     * play the video by the different way
+     *
+     * @param url
+     */
+    private void playVideo(String url) {
+//        VideoActivity.boot(this, url);
+//        ActFlashPlay.boot(this, url);
+        SWFPlayerActivity.boot(this, url);
     }
 
     // ----------------- download and install apk start ---------------------
@@ -455,7 +464,7 @@ public class DetailsActivity extends BaseHoldBackActivity implements
 
         Product.VideoDOsBean videoBean = (Product.VideoDOsBean) videos.get(pos);
         String url = videoBean.getVideoUrl();
-        VideoActivity.boot(this, url);
+        playVideo(url);
     }
 
     /**
@@ -481,6 +490,108 @@ public class DetailsActivity extends BaseHoldBackActivity implements
         }
         PhotoLoader.display(this, ivTopQrCode, qrCodeUrl, R.mipmap.place_holder);
 
+        // recommend
+        if (tempPro.getProductRecommend() == Product.P_RCMD_YES) {
+            ivLatest.setVisibility(View.VISIBLE);
+        } else {
+            ivLatest.setVisibility(View.GONE);
+        }
+
+        tvTitle.setText(tempPro.getName());
+        // ratingBar
+        final float socre = product.getProductScore();
+        tvScore.setText(String.valueOf(socre));
+        rbScore.setTouchable(false);
+        rbScore.setStarMark(1 - (socre / 10f));
+
+        // show the goods
+        if (Product.P_TYPE_APP == product.getType()) {      // AR(APP) Good: oper the expanded view(trialView, playVideo, appImgs)
+
+            fillARGoodHeader(tempPro);
+            fillARGoodExpand(tempPro);
+        } else {                                            // Video Good: hide the expanded view(trialView, playVideo, appImgs)
+            rlApp.setVisibility(View.GONE);
+            rlVideo.setVisibility(View.VISIBLE);
+
+            // texts
+            tvVideoClass.setText(tempPro.getProductCategoryTag());
+            tvVideoDev.setText(tempPro.getProductDeveloper());
+            tvVideoUpdate.setText(DateUtil.getCNDate(tempPro.getProductModifyDate()));
+
+            videos = product.getVideoDOs();
+            videoAdapter.setDataSource(videos, false);
+
+            // hide the expanded view
+            ivPlayVideoTips.setVisibility(View.GONE);
+            rlPlayVideo.setVisibility(View.GONE);
+            ivTrialTips.setVisibility(View.GONE);
+            ivGoodTrial.setVisibility(View.GONE);
+            ivAppImg.setVisibility(View.GONE);
+            rlAppImgs.setVisibility(View.GONE);
+            llIndicator.setVisibility(View.GONE);
+        }
+    }
+
+    private void fillARGoodHeader(Product tempPro) {
+        rlApp.setVisibility(View.VISIBLE);
+        rlVideo.setVisibility(View.GONE);
+
+        // set the visibilisty of the install status
+        if (Product.P_ENABLE == product.getProductAppEnabled()) {
+            ivInstallStatus.setVisibility(View.VISIBLE);
+        } else {
+            ivInstallStatus.setVisibility(View.INVISIBLE);
+        }
+
+        // texts
+        tvClass.setText(tempPro.getProductCategoryTag());
+        tvDev.setText(tempPro.getProductDeveloper());
+        tvUpdate.setText(DateUtil.getCNDate(tempPro.getProductModifyDate()));
+
+        tvPrice.setText("" + StringUtil.getFormatPrice(tempPro.getPrice()));
+        // size
+        if (StringUtil.checkEmpty(tempPro.getProductSize())) {
+            tvSize.setText("0 MB");
+        } else {
+            tvSize.setText(tempPro.getProductSize() + " MB");
+        }
+        tvVer.setText(tempPro.getProductApkVersion());
+
+        if (AppManager.isAppInstalled(this, tempPro.getProductPackName())) {    // 已安装
+
+            ivInstallStatus.setImageResource(R.mipmap.details_install_boot);
+            ivInstallStatus.setEnabled(true);
+        } else {                                                                // 未安装
+
+            if (!CameraUtils.hasFrontFacingCamera()) {      // do not exist camera
+                ivIsHasCamera.setVisibility(View.VISIBLE);
+                ivIsHasCamera.setImageResource(R.mipmap.details_not_camera);
+
+                ivInstallStatus.setImageResource(R.mipmap.details_install_no);
+                ivInstallStatus.setEnabled(false);
+            } else {                                        // exist camera
+                // TODO: 增加有摄像头，提示。等客户给图
+//                ivIsHasCamera.setVisibility(View.VISIBLE);
+//                ivIsHasCamera.setImageResource(R.mipmap.details_has_camera);
+
+                ivInstallStatus.setImageResource(R.mipmap.details_install_ok);
+                ivInstallStatus.setEnabled(true);
+            }
+        }
+    }
+
+    private void fillARGoodExpand(Product tempPro) {
+        // oper playVideoView
+        if (Product.P_UNABLE == product.getProductPlayEnabled()) {
+
+            ivPlayVideoTips.setVisibility(View.GONE);
+            rlPlayVideo.setVisibility(View.GONE);
+        } else {
+
+            ivPlayVideoTips.setVisibility(View.VISIBLE);
+            rlPlayVideo.setVisibility(View.VISIBLE);
+        }
+
         // trial
         if (Product.P_ENABLE == product.getProductTrialEnabled()) {
 
@@ -493,97 +604,13 @@ public class DetailsActivity extends BaseHoldBackActivity implements
             ivGoodTrial.setVisibility(View.GONE);
         }
 
-        // recommend
-        if (tempPro.getProductRecommend() == Product.P_RCMD_YES) {
-            ivLatest.setVisibility(View.VISIBLE);
-        } else {
-            ivLatest.setVisibility(View.GONE);
-        }
-
-        // show the goods
-        if (Product.P_TYPE_APP == product.getType()) {      // APP Good
-            rlApp.setVisibility(View.VISIBLE);
-            rlVideo.setVisibility(View.GONE);
-
-            // set the visibilisty of the install status
-            if (Product.P_ENABLE == product.getProductAppEnabled()) {
-                ivInstallStatus.setVisibility(View.VISIBLE);
-            } else {
-                ivInstallStatus.setVisibility(View.INVISIBLE);
-            }
-
-            // texts
-            tvClass.setText(tempPro.getProductCategoryTag());
-            tvDev.setText(tempPro.getProductDeveloper());
-            tvUpdate.setText(DateUtil.getCNDate(tempPro.getProductModifyDate()));
-
-            tvPrice.setText("" + StringUtil.getFormatPrice(tempPro.getPrice()));
-            // size
-            if (StringUtil.checkEmpty(tempPro.getProductSize())) {
-                tvSize.setText("0 MB");
-            } else {
-                tvSize.setText(tempPro.getProductSize() + " MB");
-            }
-            tvVer.setText(tempPro.getProductApkVersion());
-
-            if (AppManager.isAppInstalled(this, tempPro.getProductPackName())) {    // 已安装
-
-                ivInstallStatus.setImageResource(R.mipmap.details_install_boot);
-                ivInstallStatus.setEnabled(true);
-            } else {                                                                // 未安装
-
-                if (!CameraUtils.hasFrontFacingCamera()) {      // do not exist camera
-                    ivIsHasCamera.setVisibility(View.VISIBLE);
-                    ivIsHasCamera.setImageResource(R.mipmap.details_not_camera);
-
-                    ivInstallStatus.setImageResource(R.mipmap.details_install_no);
-                    ivInstallStatus.setEnabled(false);
-                } else {                                        // exist camera
-                    // TODO: 增加有摄像头，提示。等客户给图
-//                ivIsHasCamera.setVisibility(View.VISIBLE);
-//                ivIsHasCamera.setImageResource(R.mipmap.details_has_camera);
-
-                    ivInstallStatus.setImageResource(R.mipmap.details_install_ok);
-                    ivInstallStatus.setEnabled(true);
-                }
-            }
-        } else {                                            // AR Good
-            rlApp.setVisibility(View.GONE);
-            rlVideo.setVisibility(View.VISIBLE);
-
-            // texts
-            tvVideoClass.setText(tempPro.getProductCategoryTag());
-            tvVideoDev.setText(tempPro.getProductDeveloper());
-            tvVideoUpdate.setText(DateUtil.getCNDate(tempPro.getProductModifyDate()));
-
-            videos = product.getVideoDOs();
-            videoAdapter.setDataSource(videos, false);
-        }
-
-        tvTitle.setText(tempPro.getName());
-        // ratingBar
-        final float socre = product.getProductScore();
-        tvScore.setText(String.valueOf(socre));
-        rbScore.setTouchable(false);
-        rbScore.setStarMark(1 - (socre / 10f));
-
-        // oper playVideoView
-        if (Product.P_UNABLE == product.getProductPlayEnabled()) {
-
-            ivPlayVideoTips.setVisibility(View.GONE);
-            rlPlayVideo.setVisibility(View.GONE);
-        } else {
-
-            ivPlayVideoTips.setVisibility(View.VISIBLE);
-            rlPlayVideo.setVisibility(View.VISIBLE);
-        }
-
         // goodImgs
         fillGoodImgs();
     }
 
     private void fillGoodImgs() {
         if (StringUtil.checkEmpty(product.getProductImages())) {         // hide the app images
+
             ivAppImg.setVisibility(View.GONE);
             rlAppImgs.setVisibility(View.GONE);
             llIndicator.setVisibility(View.GONE);
@@ -643,7 +670,7 @@ public class DetailsActivity extends BaseHoldBackActivity implements
             products.remove(product);
         }
 
-        tempPro.setProductModifyDate(DateUtil.getENDate());
+        tempPro.setProductUploadDate(DateUtil.getENDate());
         products.add(0, tempPro);
         AppContext.getInstance().saveSees(products);
     }

@@ -52,10 +52,10 @@ public class DateListRVAdapter extends SectionedRVAdapter<DateListRVAdapter.Item
         String showDate = "";
         if (listType == IVALUE_LIST_SEES) {                 // 最近访问
 
-            showDate = startData.getProductModifyDate();
+            showDate = startData.getProductUploadDate();
         } else {                                            // 最新上架 与 我的收藏
 
-            showDate = DateUtil.formatYearMonth(startData.getProductModifyDate());
+            showDate = DateUtil.formatYearMonth(startData.getProductUploadDate());
         }
         holder.tvSection.setText(showDate);
     }

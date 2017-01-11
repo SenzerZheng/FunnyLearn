@@ -82,8 +82,8 @@ public class DateListActivity extends BaseHoldBackActivity implements
         @Override
         public int compare(Object lObj, Object rObj) {
             // yyyy-MM compare to yyyy-MM
-            String lDate = DateUtil.formatYearMonth(((Product) lObj).getProductModifyDate());
-            String rDate = DateUtil.formatYearMonth(((Product) rObj).getProductModifyDate());
+            String lDate = DateUtil.formatYearMonth(((Product) lObj).getProductUploadDate());
+            String rDate = DateUtil.formatYearMonth(((Product) rObj).getProductUploadDate());
             return lDate.compareTo(rDate);
         }
     };
@@ -172,7 +172,13 @@ public class DateListActivity extends BaseHoldBackActivity implements
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                if (rvList.getChildAt(0).getTop() == 0) {       // restore the raw postion
+                View firstChildView = rvList.getChildAt(0);
+                if (null == firstChildView) {
+
+                    return;
+                }
+
+                if (firstChildView.getTop() == 0) {       // restore the raw postion
 
                     lineTranslationY = 0;
                     rvList.smoothScrollToPosition(0);
@@ -205,8 +211,8 @@ public class DateListActivity extends BaseHoldBackActivity implements
                 @Override
                 public int compare(Object lObj, Object rObj) {
                     // yyyy-MM-dd compare to yyyy-MM-dd
-                    String lDate = ((Product) lObj).getProductModifyDate();
-                    String rDate = ((Product) rObj).getProductModifyDate();
+                    String lDate = ((Product) lObj).getProductUploadDate();
+                    String rDate = ((Product) rObj).getProductUploadDate();
                     return lDate.compareTo(rDate);
                 }
             };

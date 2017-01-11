@@ -8,12 +8,16 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
 
+import net.frontdo.funnylearn.logger.FrontdoLogger;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static net.frontdo.funnylearn.api.ParamsHelper.TAG;
 
 public class VersionUtils {
     /**
@@ -103,6 +107,8 @@ public class VersionUtils {
             is.close();
             return file;
         } else {
+
+            FrontdoLogger.getLogger().e(TAG, "[ " + TAG + " - getExternalStorageState] do not equal MEDIA_MOUNTED");
             return null;
         }
     }
