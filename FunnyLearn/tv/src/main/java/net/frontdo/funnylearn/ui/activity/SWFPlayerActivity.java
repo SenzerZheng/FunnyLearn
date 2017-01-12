@@ -83,6 +83,19 @@ public class SWFPlayerActivity extends BaseHoldBackActivity {
             view.loadUrl(url);
             return true;
         }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            // must add all chars
+            view.loadUrl("javascript:(" +
+                    "       function() { " +
+                    "               var videos = document.getElementsByTagName('video'); " +
+                    "               for(var i=0;i<videos.length;i++) {" +
+                    "                   videos[i].play();" +
+                    "               }" +
+                    "      })()");
+//            super.onPageFinished(view, url);
+        }
     }
 
     public static void boot(Context context, String videoUrl) {

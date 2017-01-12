@@ -300,7 +300,7 @@ public class MainActivity extends BaseHoldBackActivity implements
 
     // ################### Network Request Start ###################
     private void unlogin() {
-        showProgressDlg(null, true);
+//        showProgressDlg(null, true);
 
         Subscription subscription = apiService.userUnlogin()
                 .subscribeOn(Schedulers.io())
@@ -308,7 +308,7 @@ public class MainActivity extends BaseHoldBackActivity implements
                 .subscribe(new FrontdoSubcriber<Response, MainInfo>() {
                     @Override
                     public void onSuccess(String code, MainInfo data) {
-                        dismissProgressDlg();
+//                        dismissProgressDlg();
 
                         String[] titles = null;
                         int[] ids = null;           // for get the data

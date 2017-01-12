@@ -38,14 +38,14 @@ public class HttpUrls {
     @NonNull
     private static final String getLocalHost() {
         if (BT_RELEASE.equalsIgnoreCase(BuildConfig.BUILD_TYPE)) {              // release(生产), forbid the log and request
-            return "http://118.178.124.197:8080/eden/";
+            return "http://auv.shzhimo.com:80/eden/";
         } else if (BT_DEBUG_REL.equalsIgnoreCase(BuildConfig.BUILD_TYPE)) {     // debugRelease(for viewBug)
-            return "http://118.178.124.197:8080/eden/";
+            return "http://auv.shzhimo.com:80/eden/";
         } else if (BT_ALPHA.equalsIgnoreCase(BuildConfig.BUILD_TYPE)) {         // alpha(preRelease)
-            return "http://118.178.124.197:8080/eden/";
+            return "http://auv.shzhimo.com:80/eden/";
         }
 
-        return "http://118.178.124.197:8080/eden/";                             // debug(developer)
+        return "http://auv.shzhimo.com:80/eden/";                             // debug(developer)
     }
 
     // ------------------ 接口名 -----------------
