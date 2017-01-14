@@ -278,3 +278,8 @@
 -keep class com.unionpay.** { *; }
 -keep class com.UCMobile.PayPlugin.** { *; }
 -keep class cn.gov.pbc.tsm.client.mobile.android.bank.service.** { *; }
+
+# Glide
+-keep class com.bumptech.glide.integration.volley.VolleyGlideModule
+#or
+-keep public class * implements com.bumptech.glide.module.GlideModule

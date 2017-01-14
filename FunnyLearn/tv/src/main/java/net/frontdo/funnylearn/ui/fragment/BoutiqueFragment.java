@@ -7,7 +7,7 @@ import net.frontdo.funnylearn.R;
 import net.frontdo.funnylearn.app.AppConstants;
 import net.frontdo.funnylearn.app.AppContext;
 import net.frontdo.funnylearn.base.BaseFragment;
-import net.frontdo.funnylearn.common.PhotoLoader;
+import net.frontdo.funnylearn.common.glide.PhotoLoader;
 import net.frontdo.funnylearn.net.FrontdoSubcriber;
 import net.frontdo.funnylearn.ui.activity.DateListActivity;
 import net.frontdo.funnylearn.ui.activity.DetailsActivity;

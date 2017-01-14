@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.frontdo.funnylearn.R;
-import net.frontdo.funnylearn.common.PhotoLoader;
+import net.frontdo.funnylearn.common.glide.PhotoLoader;
 import net.frontdo.funnylearn.ui.entity.Product;
 import net.frontdo.funnylearn.ui.widget.ZoomableRelativeLay;
 

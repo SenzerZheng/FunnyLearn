@@ -23,7 +23,7 @@ import net.frontdo.funnylearn.common.AppManager;
 import net.frontdo.funnylearn.common.CameraUtils;
 import net.frontdo.funnylearn.common.DateUtil;
 import net.frontdo.funnylearn.common.MyUpdateNotification;
-import net.frontdo.funnylearn.common.PhotoLoader;
+import net.frontdo.funnylearn.common.glide.PhotoLoader;
 import net.frontdo.funnylearn.common.PixelUtils;
 import net.frontdo.funnylearn.common.StringUtil;
 import net.frontdo.funnylearn.common.VersionUtils;

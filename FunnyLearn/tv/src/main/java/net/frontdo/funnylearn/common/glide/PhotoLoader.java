@@ -1,4 +1,4 @@
-package net.frontdo.funnylearn.common;
+package net.frontdo.funnylearn.common.glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -50,7 +50,7 @@ public class PhotoLoader {
                 .placeholder(resId)
                 .error(resId)
                 .skipMemoryCache(false)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(imageView);
     }
 

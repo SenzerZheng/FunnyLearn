@@ -112,6 +112,10 @@
             android:launchMode="standard"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
+        <meta-data
+            android:name="net.frontdo.funnylearn.common.glide.GlideModelConfig"
+            android:value="GlideModule" />
     </application>
 
 </manifest>

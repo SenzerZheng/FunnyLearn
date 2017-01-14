@@ -1,5 +1,6 @@
 package net.frontdo.funnylearn.common;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -47,7 +48,15 @@ public class DatePickerDialogUtil {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
-        DatePickerDialog datePickerDlg = new DatePickerDialog(context, R.style.style_date_picker_dialog, listener,
+        int style = 0;
+//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+//            style = AlertDialog.THEME_DEVICE_DEFAULT_LIGHT;   // <==> THEME_HOLO_LIGHT
+//        } else {
+//            style = R.style.style_date_picker_dialog;         // use the theme, at sys version: 2.3
+//        }
+        style = AlertDialog.THEME_HOLO_LIGHT;
+
+        DatePickerDialog datePickerDlg = new DatePickerDialog(context, style, listener,
                 calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
         datePickerDlg.setTitle(context.getString(R.string.date_picker_title));
