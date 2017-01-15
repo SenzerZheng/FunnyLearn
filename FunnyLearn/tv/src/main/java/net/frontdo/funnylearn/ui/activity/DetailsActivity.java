@@ -485,12 +485,25 @@ public class DetailsActivity extends BaseHoldBackActivity implements
         PhotoLoader.display(this, ivGoodsDesc, tempPro.getProductDesc(), R.mipmap.place_holder);
         // qrCode
         String qrCodeUrl = "";
-        if (Product.P_ENABLE == product.getProductAppEnabled()) {
+        if (Product.P_ENABLE == product.getProductAppEnabled()) {           // enable app
             qrCodeUrl = tempPro.getProductAppQRCode();
-        } else {
+        } else {                                                            // enable video
             qrCodeUrl = tempPro.getProductMicroStoreByecodeAddr();
+
+            if (StringUtil.checkEmpty(qrCodeUrl)) {
+                qrCodeUrl = tempPro.getProductAppQRCode();
+            }
         }
-        PhotoLoader.display(this, ivTopQrCode, qrCodeUrl, R.mipmap.place_holder);
+
+        if (StringUtil.checkEmpty(qrCodeUrl)) {
+
+            ivTopQrCode.setVisibility(View.GONE);
+        } else {
+
+            ivTopQrCode.setVisibility(View.VISIBLE);
+            PhotoLoader.display(this, ivTopQrCode, qrCodeUrl, R.mipmap.place_holder);
+        }
+
 
         // recommend
         if (tempPro.getProductRecommend() == Product.P_RCMD_YES) {
