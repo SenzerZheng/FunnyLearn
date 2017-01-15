@@ -314,7 +314,7 @@ public class DetailsActivity extends BaseHoldBackActivity implements
 //                String apkDownUrl = "http://app.znds.com/down/20161117/douyu_1.1.6_dangbei.apk";
                 String apkDownUrl = product.getProductApkDownUrl();
                 /** 下载最新版本Apk，打开手动进行安装。不修改底层框架（Framework）无法使用静默安装。 */
-                ProgressDialogUtil.openHorizontalProgressDialog(DetailsActivity.this, "正在下载更新...");
+                ProgressDialogUtil.openHorizontalProgressDialog(DetailsActivity.this, "正在下载安装...");
                 downloadApk(apkDownUrl, ProgressDialogUtil.getProgressDialog());
 //                downloadApk(apkDownUrl);
 
