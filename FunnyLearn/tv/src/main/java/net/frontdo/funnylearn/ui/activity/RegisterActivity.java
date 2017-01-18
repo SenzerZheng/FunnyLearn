@@ -1,12 +1,10 @@
 package net.frontdo.funnylearn.ui.activity;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,7 +13,6 @@ import net.frontdo.funnylearn.app.AppContext;
 import net.frontdo.funnylearn.base.BaseHoldBackActivity;
 import net.frontdo.funnylearn.common.ActivityStack;
 import net.frontdo.funnylearn.common.DatePickerDialogUtil;
-import net.frontdo.funnylearn.common.DateUtil;
 import net.frontdo.funnylearn.common.StringUtil;
 import net.frontdo.funnylearn.net.FrontdoSubcriber;
 import net.frontdo.funnylearn.net.bean.ReqLogin;
@@ -157,13 +154,8 @@ public class RegisterActivity extends BaseHoldBackActivity {
                 break;
 
             case R.id.tv_sel_birth_date:
-                DatePickerDialogUtil.showCur(RegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                        tvSelBirthDate.setText(DateUtil.getSelectedDate(year, month, dayOfMonth));
-                    }
-                });
+                DatePickerDialogUtil.showCustomDPV(this, tvSelBirthDate);
                 break;
 
             default:

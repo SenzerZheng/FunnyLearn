@@ -24,6 +24,7 @@ public class DateUtil {
     public static final String SDF_01 = "yyyy-MM-dd";
     public static final String SDF_02 = "yyyy年MM月dd日";
     public static final String SDF_03 = "yyyy-MM";
+    public static final String SDF_04 = "yyyy-MM-dd HH:mm";
 
 
     /**
@@ -144,6 +145,16 @@ public class DateUtil {
      */
     public static String getENDate() {
         SimpleDateFormat format = new SimpleDateFormat(SDF_01);
+        return format.format(new Date());
+    }
+
+    /**
+     * get yyyy-MM-dd HH:mm
+     *
+     * @return
+     */
+    public static String getENDate4() {
+        SimpleDateFormat format = new SimpleDateFormat(SDF_04);
         return format.format(new Date());
     }
 

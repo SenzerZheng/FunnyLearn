@@ -1,18 +1,15 @@
 package net.frontdo.funnylearn.ui.activity;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.TextView;
 
 import net.frontdo.funnylearn.R;
 import net.frontdo.funnylearn.app.AppContext;
 import net.frontdo.funnylearn.base.BaseHoldBackActivity;
 import net.frontdo.funnylearn.common.DatePickerDialogUtil;
-import net.frontdo.funnylearn.common.DateUtil;
 import net.frontdo.funnylearn.net.FrontdoSubcriber;
 import net.frontdo.funnylearn.net.bean.ReqUpdateInfo;
 import net.frontdo.funnylearn.ui.entity.UserInfo;
@@ -84,13 +81,7 @@ public class MineDetailsActivity extends BaseHoldBackActivity {
 
             case R.id.tv_sel_birth_date:                // 选择出生日期
 
-                DatePickerDialogUtil.showCur(this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                        tvSelBirthDate.setText(DateUtil.getSelectedDate(year, month, dayOfMonth));
-                    }
-                });
+                DatePickerDialogUtil.showCustomDPV(this, tvSelBirthDate);
                 break;
 
             case R.id.iv_edit:                          // 编辑，进行保存

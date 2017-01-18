@@ -6,10 +6,15 @@ import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.TextView;
 
 import net.frontdo.funnylearn.R;
+import net.frontdo.funnylearn.ui.widget.datepicker.CustomDatePicker;
 
 import java.util.Calendar;
+
+import static net.frontdo.funnylearn.ui.widget.datepicker.CustomDatePicker.DEFAULT_START_DATE;
+import static net.frontdo.funnylearn.ui.widget.datepicker.CustomDatePicker.SPLIT_DATE_TIME;
 
 /**
  * ProjectName: DatePickerDialogUtil
@@ -61,5 +66,30 @@ public class DatePickerDialogUtil {
 
         datePickerDlg.setTitle(context.getString(R.string.date_picker_title));
         datePickerDlg.show();
+    }
+
+    /**
+     * show the custom date picker
+     *
+     * @param context
+     * @param tv
+     */
+    public static void showCustomDPV(@NonNull Context context, @Nullable final TextView tv) {
+        String now = DateUtil.getENDate4();
+        String text = tv.getText().toString().trim();
+        if (StringUtil.checkEmpty(text)) {
+            text = now.split(SPLIT_DATE_TIME)[0];
+        }
+
+        CustomDatePicker datePicker = new CustomDatePicker(context, new CustomDatePicker.ResultHandler() {
+            @Override
+            public void handle(String time) { // 回调接口，获得选中的时间
+                tv.setText(time.split(SPLIT_DATE_TIME)[0]);
+            }
+        }, DEFAULT_START_DATE, now);                                // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
+        datePicker.showSpecificTime(false);                         // 不显示时和分
+        datePicker.setIsLoop(false);                                // 不允许循环滚动
+
+        datePicker.show(text);
     }
 }

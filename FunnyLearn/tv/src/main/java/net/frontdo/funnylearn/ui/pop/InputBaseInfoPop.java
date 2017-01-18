@@ -1,20 +1,17 @@
 package net.frontdo.funnylearn.ui.pop;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import net.frontdo.funnylearn.R;
 import net.frontdo.funnylearn.app.AppContext;
 import net.frontdo.funnylearn.common.DatePickerDialogUtil;
-import net.frontdo.funnylearn.common.DateUtil;
 import net.frontdo.funnylearn.common.StringUtil;
 import net.frontdo.funnylearn.common.ToastHelper;
 import net.frontdo.funnylearn.ui.entity.UserInfo;
@@ -99,14 +96,15 @@ public class InputBaseInfoPop {
         tvBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DatePickerDialogUtil.showCustomDPV(mContext, tvBirthday);
 
-                DatePickerDialogUtil.showCur(mContext, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                        tvBirthday.setText(DateUtil.getSelectedDate(year, month, dayOfMonth));
-                    }
-                });
+//                DatePickerDialogUtil.showCur(mContext, new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//
+//                        tvBirthday.setText(DateUtil.getSelectedDate(year, month, dayOfMonth));
+//                    }
+//                });
             }
         });
 

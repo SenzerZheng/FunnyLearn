@@ -181,6 +181,20 @@ public class DetailsActivity extends BaseHoldBackActivity implements
         reqDetails(productId);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // update the data
+        if (null != product
+                && Product.P_ENABLE == product.getProductAppEnabled()
+                && AppManager.isAppInstalled(this, product.getProductPackName())) { // 已安装
+
+            ivInstallStatus.setImageResource(R.mipmap.details_install_boot);
+            ivInstallStatus.setEnabled(true);
+        }
+    }
+
     private void initView() {
         // video piece
         GridLayoutManager glm = new GridLayoutManager(this, 4);
